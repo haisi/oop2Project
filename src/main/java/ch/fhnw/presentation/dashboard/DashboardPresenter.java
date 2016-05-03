@@ -5,6 +5,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import ch.fhnw.presentation.toolbar.ToolbarPresenter;
+import ch.fhnw.presentation.toolbar.ToolbarView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -41,7 +43,18 @@ public class DashboardPresenter implements Initializable {
         this.theVeryEnd = rb.getString("theEnd");
 
         borderPane.setTop(new Label("Top pane: add here toolbar"));
+
+        setToolbar();
+
         borderPane.setCenter(new Label("Center pane: add here splitpane view"));
+    }
+
+    private void setToolbar() {
+        ToolbarView toolbarView = new ToolbarView();
+        ToolbarPresenter toolbarPresenter = (ToolbarPresenter) toolbarView.getPresenter();
+        // TODO use toolbarPresenter to bind textfield-value to table
+        // TODO add listener-object to toolbarPresenter for remove and add item
+        borderPane.setTop(toolbarView.getView());
     }
 
 }
