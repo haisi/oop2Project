@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import javax.inject.Inject;
@@ -18,10 +19,7 @@ import javax.inject.Inject;
 public class DashboardPresenter implements Initializable {
 
     @FXML
-    Label message;
-
-    @FXML
-    Pane lightsBox;
+    BorderPane borderPane;
 
     @Inject
     Tower tower;
@@ -41,15 +39,9 @@ public class DashboardPresenter implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //fetched from dashboard.properties
         this.theVeryEnd = rb.getString("theEnd");
-    }
 
-    public void createLights() {
-
-    }
-
-    public void launch() {
-        message.setText("Date: " + date + " -> " + prefix + tower.readyToTakeoff() + happyEnding + theVeryEnd
-        );
+        borderPane.setTop(new Label("Top pane: add here toolbar"));
+        borderPane.setCenter(new Label("Center pane: add here splitpane view"));
     }
 
 }
