@@ -1,8 +1,11 @@
 package ch.fhnw.presentation.business.movie.entity;
 
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -18,7 +21,7 @@ public class Movie {
     final StringProperty mainActor = new SimpleStringProperty();
     final StringProperty titleEnglish = new SimpleStringProperty();
     final IntegerProperty yearOfProduction = new SimpleIntegerProperty();
-    //TODO List of string for countries (US/GB/...)
+    ObservableList<String> country = FXCollections.observableArrayList();
     final IntegerProperty duration = new SimpleIntegerProperty();
     final IntegerProperty fsk = new SimpleIntegerProperty();
     final StringProperty genre = new SimpleStringProperty();
@@ -32,8 +35,19 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "id=" + id.get() +
-                ", title=" + title.get() +
+                "id=" + id +
+                ", title=" + title +
+                ", yearOfAward=" + yearOfAward +
+                ", director=" + director +
+                ", mainActor=" + mainActor +
+                ", titleEnglish=" + titleEnglish +
+                ", yearOfProduction=" + yearOfProduction +
+                ", country=" + country +
+                ", duration=" + duration +
+                ", fsk=" + fsk +
+                ", genre=" + genre +
+                ", startDate=" + startDate +
+                ", numberOfOscars=" + numberOfOscars +
                 '}';
     }
 
@@ -91,6 +105,22 @@ public class Movie {
 
     public void setYearOfAward(int yearOfAward) {
         this.yearOfAward.set(yearOfAward);
+    }
+
+    public void addCountries(String... countries) {
+        country.addAll(countries);
+    }
+
+    public void addCountry(String c) {
+        country.add(c);
+    }
+
+    public ObservableList<String> getCountry() {
+        return country;
+    }
+
+    public void setCountry(ObservableList<String> country) {
+        this.country = country;
     }
 
     public String getDirector() {
