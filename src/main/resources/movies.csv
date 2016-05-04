@@ -1,0 +1,84 @@
+#id;Title;yearOfAward;director;mainActor;titleEnglish;yearOfProduction;country;duration;fsk;genre;startDate;numberOfOscars
+0;Broadway Melody;1929;Harry Beaumont;Anita Page, Bessie Love;The Broadway Melody;1929;US;100;12;Musikfilm;-;1
+1;Im Westen nichts Neues;1931;Lewis Milestone;Louis Wolheim, Lew Ayres;All Quiet on the Western Front;1930;US;136;12;Drama;04.12.1930;1
+2;Pioniere des wilden Westens ;1932;Wesley Ruggles;Richard Dix, Irene Dunne;Cimarron;1931;US;123;12;Drama, Western;-;1
+3;Menschen im Hotel;1933;Edmund Goulding;Greta Garbo, John Barrymore;Grand Hotel;1932;US;110;16;Drama;14.02.1933;1
+4;Kavalkade;1934;Frank Lloyd;Diana Wynyard, Clive Brook;Cavalcade;1933;US;110;12;Drama;-;1
+5;Es geschah in einer Nacht;1935;Frank Capra;Clark Gable, Claudette Colbert;It Happened One Night;1934;US;101;0;Road Movie, Komödie;28.03.1935;1
+6;Meuterei auf der Bounty;1936;Frank Lloyd;Charles Laughton, Clark Gable;Mutiny on the Bounty;1935;US;135;12;Abenteuerfilm, Drama, Historienfilm;05.03.1951;1
+7;Der große Ziegfeld;1937;Robert Z. Leonard;William Powell, Myrna Loy;The Great Ziegfeld;1936;US;110;12;Drama, Komödie, Musikfilm;28.04.1950;1
+8;Das Leben des Emile Zola;1938;William Dieterle;Paul Muni, Gale Sondergaard;The Life of Emile Zola;1937;US;116;12;Drama;-;1
+9;Lebenskünstler;1939;Frank Capra;Jean Arthur, Lionel Barrymore;You Can't Take It with You;1938;US;121;6;Komödie;-;1
+10;Vom Winde verweht;1940;George Cukor, Sam Wood;Clark Gable, Vivien Leigh;Gone with the Wind;1939;US;234;12;Drama, Historienfilm;15.01.1953;1
+11;Rebecca;1941;Alfred Hitchcock;Laurence Olivier, Joan Fontaine;Rebecca;1940;US;130;16;Drama, Thriller;30.10.1951;1
+12;So grün war mein Tal;1942;John Ford;Walter Pidgeon, Maureen O'Hara;How Green Was My Valley;1941;US;117;12;Drama;28.04.1950;1
+13;Mrs. Miniver;1943;William Wyler;Greer Garson, Walter Pidgeon;Mrs. Miniver;1942;US;134;12;Drama;21.10.1960;1
+14;Casablanca;1944;Michael Curtiz;Humphrey Bogart, Ingrid Bergman;Casablanca;1942;US;102;6;Drama;21.06.2007;1
+15;Der Weg zum Glück;1945;Leo McCarey;Bing Crosby, Barry Fitzgerald;Going My Way;1944;US;130;0;Drama, Komödie;04.09.1946;1
+16;Das verlorene Wochenende;1946;Billy Wilder;Ray Milland, Jane Wyman;The Lost Weekend;1945;US;101;16;Drama, Kriminalfilm;14.02.1947;1
+17;Die besten Jahre unseres Lebens;1947;William Wyler;Myrna Loy, Fredric March;The Best Years of Our Lives;1946;US;172;12;Drama;01.06.1948;1
+18;Tabu der Gerechten;1948;Elia Kazan;Gregory Peck, Dorothy McGuire;Gentleman's Agreement;1947;US;117;12;Drama;29.10.1963;1
+19;Hamlet;1949;Laurence Olivier;Laurence Olivier, Norman Wooland;Hamlet;1948;GB;150;12;Drama, Thriller;10.12.1948;1
+20;Der Mann, der herrschen wollte;1950;Robert Rossen;John Ireland, Broderick Crawford;All the King's Men;1949;US;109;12;Drama;23.07.1951;1
+21;Alles über Eva;1951;Joseph L. Mankiewicz;Bette Davis, Anne Baxter;All About Eve;1950;US;138;12;Drama;29.11.1952;1
+22;Ein Amerikaner in Paris;1952;Vincente Minnelli;Gene Kelly, Leslie Caron;An American in Paris;1951;US;114;12;Musikfilm, Komödie;17.12.1952;1
+23;Die Größte Schau der Welt;1953;Cecil B. DeMille;Betty Hutton, Cornel Wilde;The Greatest Show on Earth;1952;US;150;12;Drama;25.12.1952;1
+24;Verdammt in alle Ewigkeit;1954;Fred Zinnemann;Burt Lancaster, Montgomery Clift;From Here to Eternity;1953;US;115;16;Drama;06.02.1954;1
+25;Die Faust im Nacken;1955;Elia Kazan;Marlon Brando, Karl Malden;On the Waterfront;1954;US;108;12;Drama;05.11.1954;1
+26;Marty;1956;Delbert Mann;Ernest Borgnine, Betsy Blair;Marty;1955;US;86;12;Drama;02.09.1955;1
+27;In 80 Tagen um die Welt;1957;Michael Anderson, John Farrow;David Niven, Cantinflas;Around the World in Eighty Days;1956;US;178;6;Abenteuerfilm, Historienfilm, Komödie;04.10.1957;1
+28;Die Brücke am Kwai;1958;David Lean;William Holden, Alec Guinness;The Bridge on the River Kwai;1957;GB/US;161;12;Drama;07.03.1958;1
+29;Gigi;1959;Vincente Minnelli;Leslie Caron, Maurice Chevalier;Gigi;1958;US;115;16;Komödie, Musikfilm;18.12.1958;1
+30;Ben Hur;1960;William Wyler;Charlton Heston, Jack Hawkins;Ben Hur;1959;US;212;16;Historienfilm, Drama;24.11.2005;1
+31;Das Appartement;1961;Billy Wilder;Jack Lemmon, Shirley MacLaine;The Apartment;1960;US;125;16;Drama, Komödie;16.09.1960;1
+32;West Side Story;1962;Jerome Robbins, Robert Wise;Natalie Wood, Tucker Smith;West Side Story;1961;US;151;12;Drama, Musikfilm;03.06.2004;1
+33;Lawrence von Arabien;1963;David Lean;Peter O'Toole, Alec Guinness;Lawrence of Arabia;1962;GB;202;16;Drama, Historienfilm, Abenteuerfilm;15.03.1963;1
+34;Tom Jones;1964;Tony Richardson;Albert Finney, Susannah York;Tom Jones;1963;GB;128;18;Historienfilm, Komödie, Abenteuerfilm;12.03.1964;1
+35;My Fair Lady;1965;George Cukor;Audrey Hepburn, Rex Harrison;My Fair Lady;1964;US;173;12;Musikfilm, Drama, Komödie;23.12.1964;1
+36;Meine Lieder, meine Träume;1966;Robert Wise;Julie Andrews, Christopher Plummer;The Sound of Music;1965;US;174;6;Drama, Musikfilm;17.02.1966;1
+37;Ein Mann zu jeder Jahreszeit;1967;Fred Zinnemann;Paul Scofield, Wendy Hiller;A Man For All Seasons;1966;GB;120;12;Drama, Historienfilm;25.08.1967;1
+38;In der Hitze der Nacht;1968;Norman Jewison;Sidney Poitier, Rod Steiger;In the Heat of the Night;1967;US;109;12;Kriminalfilm, Drama, Thriller;22.03.1968;1
+39;Oliver!;1969;Carol Reed;Ron Moody, Shani Wallis;Oliver!;1968;GB;149;12;Drama, Kriminalfilm, Musikfilm;18.12.1968;1
+40;Asphalt-Cowboy;1970;John Schlesinger;Dustin Hoffman, Jon Voight;Midnight Cowboy;1969;US;113;16;Drama;18.07.1969;1
+41;Patton - Rebell in Uniform;1971;Franklin J. Schaffner;George C. Scott, Karl Malden;Patton;1970;US;165;12;Drama;26.03.1970;1
+42;French Connection - Brennpunkt Brooklyn;1972;William Friedkin;Gene Hackman, Fernando Rey;The French Connection;1971;US;104;16;Actionfilm, Kriminalfilm, Drama, Thriller;14.01.1972;1
+43;Der Pate;1973;Francis Ford Coppola;Marlon Brando, Al Pacino;The Godfather;1972;US;175;16;Drama;24.08.1972;1
+44;Der Clou;1974;George Roy Hill;Paul Newman, Robert Redford;The Sting;1973;US;129;12;Komödie, Drama;11.04.1974;1
+45;Der Pate 2;1975;Francis Ford Coppola;Al Pacino, Peter Donat;The Godfather: Part II;1974;US;200;16;Drama;25.09.1975;1
+46;Einer flog über das Kuckucksnest;1976;Milos Forman;Jack Nicholson, Louise Fletcher;One Flew Over the Cuckoo's Nest;1975;US;133;18;Drama, Komödie;18.03.1976;1
+47;Rocky;1977;John G. Avildsen;Sylvester Stallone, Talia Shire;Rocky;1976;US;118;12;Drama, Sportfilm;01.04.1977;1
+48;Der Stadtneurotiker;1978;Woody Allen;Woody Allen, Janet Margolin;Annie Hall;1977;US;93;6;Komödie, Drama;09.06.1977;1
+49;Die durch die Hölle gehen;1979;Michael Cimino;Robert De Niro, Christopher Walken;The Deer Hunter;1978;GB/US;183;16;Drama;08.03.1979;1
+50;Kramer gegen Kramer;1980;Robert Benton;Dustin Hoffman, Meryl Streep;Kramer vs. Kramer;1979;US;105;16;Drama;28.02.1980;1
+51;Eine ganz normale Familie;1981;Robert Redford;Donald Sutherland, Mary Tyler Moore;Ordinary People;1980;US;124;12;Drama;11.03.1981;1
+52;Die Stunde des Siegers;1982;Hugh Hudson;Ben Cross, Ian Charleson;Chariots of Fire;1981;GB;123;12;Drama, Sportfilm;07.05.1982;1
+53;Gandhi;1983;Richard Attenborough;Ben Kingsley, Rohini Hattangadi;Gandhi;1982;GB/IN;188;12;Drama, Historienfilm;18.02.1983;1
+54;Zeit der Zärtlichkeit;1984;James L. Brooks;Shirley MacLaine, Debra Winger;Terms of Endearment;1983;US;132;12;Drama, Komödie;06.04.1984;1
+55;Amadeus;1985;Milos Forman;F. Murray Abraham, Christine Ebersole;Amadeus;1984;US;158;12;Drama, Historienfilm, Musikfilm;26.10.1984;1
+56;Jenseits von Afrika;1986;Sydney Pollack;Robert Redford, Meryl Streep;Out of Africa;1985;US;150;12;Drama;13.03.1986;1
+57;Platoon;1987;Oliver Stone;Tom Berenger, Willem Dafoe;Platoon;1986;US;114;16;Drama, Actionfilm;30.04.1987;1
+58;Der letzte Kaiser;1988;Bernardo Bertolucci;John Lone, Henry Kyi;The Last Emperor;1987;FR/GB/HK/IT/US;160;12;Drama, Historienfilm;29.10.1987;1
+59;Rain Man;1989;Barry Levinson;Dustin Hoffman, Tom Cruise;Rain Man;1988;US;133;12;Drama, Road Movie;16.03.1989;1
+60;Miss Daisy und ihr Chauffeur;1990;Bruce Beresford;Morgan Freeman, Jessica Tandy;Driving Miss Daisy;1989;US;99;6;Komödie, Drama;22.03.1990;1
+61;Der mit dem Wolf tanzt;1991;Kevin Costner;Kevin Costner, Mary McDonnell;Dances with Wolves;1990;US;224;12;Abenteuerfilm, Drama, Western;14.02.1991;1
+62;Das Schweigen der Lämmer;1992;Jonathan Demme;Jodie Foster, Anthony Hopkins;The Silence of the Lambs;1991;US;118;16;Horrorfilm, Kriminalfilm, Thriller;11.04.1991;1
+63;Erbarmungslos;1993;Clint Eastwood;Clint Eastwood, Gene Hackman;Unforgiven;1992;US;131;16;Drama, Western;24.09.1992;1
+64;Schindlers Liste;1994;Steven Spielberg;Liam Neeson, Ben Kingsley;Schindler's List;1993;US;186;12;Historienfilm, Drama;03.03.1994;1
+65;Forrest Gump;1995;Robert Zemeckis;Tom Hanks, Robin Wright;Forrest Gump;1994;US;142;12;Komödie, Drama;13.10.1994;1
+66;Braveheart;1996;Mel Gibson;Mel Gibson, Sophie Marceau;Braveheart;1995;US;171;12;Drama, Historienfilm, Actionfilm, Abenteuerfilm;05.10.1995;1
+67;Der englische Patient;1997;Anthony Minghella;Ralph Fiennes, Juliette Binoche;The english patient;1996;GB/US;155;12;Drama;27.02.1997;1
+68;Titanic;1998;James Cameron;Leonardo DiCaprio, Kate Winslet;Titanic;1997;US;194;12;Historienfilm, Katastrophenfilm, Drama;05.04.2006;1
+69;Shakespeare in Love;1999;John Madden;Joseph Fiennes, Gwyneth Paltrow;Shakespeare in Love;1998;GB/US;122;6;Historienfilm, Komödie;04.03.1999;1
+70;American Beauty;2000;Sam Mendes;Kevin Spacey, Allison Janney;American Beauty;1999;US;122;16;Drama, Komödie;20.01.2000;1
+71;Gladiator;2001;Ridley Scott;Russell Crowe, Joaquin Phoenix;Gladiator;2000;US;154;16;Actionfilm, Drama, Historienfilm;25.05.2000;1
+72;A Beautiful Mind - Genie und Wahnsinn;2002;Ron Howard;Russell Crowe, Jennifer Connelly;A Beautiful Mind;2001;US;134;12;Drama;28.02.2002;1
+73;Chicago;2003;Rob Marshall;Queen Latifah, Richard Gere;Chicago;2002;CA/US;113;12;Komödie, Kriminalfilm, Musikfilm, Drama;27.02.2003;1
+74;Der Herr der Ringe: Die Rückkehr des Königs;2004;Peter Jackson;Elijah Wood, Ian McKellen;The Lord of the Rings: The Return of the King;2003;NZ/US;200;16;Fantasyfilm, Historienfilm, Abenteuerfilm;17.12.2003;1
+75;Million Dollar Baby;2005;Clint Eastwood;Clint Eastwood, Hilary Swank;Million Dollar Baby;2004;US;133;12;Drama, Sportfilm;24.03.2005;1
+76;L.A. Crash;2006;Paul Haggis;Sandra Bullock, Don Cheadle;Crash;2004;US;113;12;Drama;04.08.2005;1
+77;Departed - Unter Feinden;2007;Martin Scorsese;Leonardo DiCaprio, Matt Damon;The Departed;2006;US;155;16;Drama, Kriminalfilm, Thriller;07.12.2006;1
+78;No Country for Old Men;2008;Ethan Coen, Joel Coen;Tommy Lee Jones, Javier Bardem;No Country for Old Men;2007;US;122;16;Kriminalfilm, Thriller, Drama, Western;28.02.2008;1
+79;Slumdog Millionär;2009;Danny Boyle;Dev Patel, Anil Kapoor;Slumdog Millionaire;2008;GB/US;120;12;Drama;19.03.2009;1
+80;Tödliches Kommando - The Hurt Locker;2010;Kathryn Bigelow;Jeremy Renner, Anthony Mackie;The Hurt Locker;2008;US;131;16;Drama, Thriller, Actionfilm;13.08.2009;1
+81;The King's Speech - Die Rede des Königs;2011;Tom Hooper;Colin Firth, Geoffrey Rush;The King's Speech;2010;AU/GB;118;0;Drama, Historienfilm;17.02.2011;1
+82;The Artist;2012;Michel Hazanavicius;Jean Dujardin, Bérénice Bejo;The Artist;2011;BE/FR;100;6;Drama, Komödie;26.01.2012;1

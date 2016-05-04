@@ -28,6 +28,15 @@ public class Movie {
 
     //TODO add constructor with all elements or builder-pattern (maybe lombdok to reduce boilerplate)
 
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id.get() +
+                ", title=" + title.get() +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
