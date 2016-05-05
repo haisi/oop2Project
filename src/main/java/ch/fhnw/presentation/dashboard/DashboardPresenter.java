@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import ch.fhnw.business.movie.service.MovieService;
+import ch.fhnw.presentation.movieEditor.MovieEditorPresenter;
+import ch.fhnw.presentation.movieEditor.MovieEditorView;
 import ch.fhnw.presentation.moviesTable.MoviesTablePresenter;
 import ch.fhnw.presentation.moviesTable.MoviesTableView;
 import ch.fhnw.presentation.toolbar.ToolbarPresenter;
@@ -45,10 +47,9 @@ public class DashboardPresenter implements Initializable {
         MoviesTablePresenter moviesTablePresenter = (MoviesTablePresenter) moviesTableView.getPresenter();
         splitPane.getItems().add(moviesTableView.getView());
 
-        AnchorPane rechts = new AnchorPane(new Label("Rechts"));
-        rechts.setPrefHeight(300);
-        rechts.setPrefWidth(300);
-        splitPane.getItems().add(rechts);
+        MovieEditorView movieEditorView = new MovieEditorView();
+        MovieEditorPresenter movieEditorPresenter = (MovieEditorPresenter) movieEditorView.getPresenter();
+        splitPane.getItems().add(movieEditorView.getView());
 
     }
 

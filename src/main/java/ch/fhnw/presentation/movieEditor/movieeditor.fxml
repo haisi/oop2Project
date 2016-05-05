@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" minHeight="180.0" prefHeight="425.0" prefWidth="821.0" styleClass="airpad" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.fhnw.presentation.movieEditor.MovieEditorPresenter">
+   <children>
+      <Label layoutX="86.0" layoutY="202.0" text="Editor" />
+   </children>
+</AnchorPane>
