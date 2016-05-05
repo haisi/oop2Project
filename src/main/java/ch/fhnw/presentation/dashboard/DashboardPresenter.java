@@ -34,9 +34,6 @@ public class DashboardPresenter implements Initializable {
     @Inject
     MovieService movieService;
 
-    @Inject
-    Tower tower;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
