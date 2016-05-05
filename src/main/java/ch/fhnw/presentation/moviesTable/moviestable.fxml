@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<AnchorPane id="AnchorPane" fx:id="anchorPane" minHeight="180.0" prefHeight="425.0" prefWidth="821.0" styleClass="airpad" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.fhnw.presentation.moviesTable.MoviesTablePresenter">
+   <children>
+      <TableView fx:id="moviesTable" layoutX="42.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="statusColumn" prefWidth="68.0" />
+            <TableColumn fx:id="yearColumn" prefWidth="111.0" text="%column.year" />
+            <TableColumn fx:id="titleColumn" prefWidth="217.0" text="%column.title" />
+            <TableColumn fx:id="directorColumn" prefWidth="770.0" text="%column.director" />
+            <TableColumn fx:id="mainActorColumn" prefWidth="770.0" text="%column.mainActor" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

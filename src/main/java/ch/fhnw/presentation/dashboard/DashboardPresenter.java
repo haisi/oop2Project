@@ -5,13 +5,18 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import ch.fhnw.business.movie.service.MovieService;
+import ch.fhnw.presentation.moviesTable.MoviesTablePresenter;
+import ch.fhnw.presentation.moviesTable.MoviesTableView;
 import ch.fhnw.presentation.toolbar.ToolbarPresenter;
 import ch.fhnw.presentation.toolbar.ToolbarView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import javax.inject.Inject;
 
@@ -23,30 +28,31 @@ public class DashboardPresenter implements Initializable {
     @FXML
     BorderPane borderPane;
 
+    @FXML
+    SplitPane splitPane;
+
+    @Inject
+    MovieService movieService;
+
     @Inject
     Tower tower;
 
-    @Inject
-    private String prefix;
-
-    @Inject
-    private String happyEnding;
-
-    @Inject
-    private LocalDate date;
-
-    private String theVeryEnd;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //fetched from dashboard.properties
-        this.theVeryEnd = rb.getString("theEnd");
 
         borderPane.setTop(new Label("Top pane: add here toolbar"));
 
         setToolbar();
 
-        borderPane.setCenter(new Label("Center pane: add here splitpane view"));
+        MoviesTableView moviesTableView = new MoviesTableView();
+        MoviesTablePresenter moviesTablePresenter = (MoviesTablePresenter) moviesTableView.getPresenter();
+        splitPane.getItems().add(moviesTableView.getView());
+
+        AnchorPane rechts = new AnchorPane(new Label("Rechts"));
+        rechts.setPrefHeight(300);
+        rechts.setPrefWidth(300);
+        splitPane.getItems().add(rechts);
+
     }
 
     private void setToolbar() {
