@@ -1,6 +1,6 @@
-package ch.fhnw.presentation.business.movie.service;
+package ch.fhnw.business.movie.service;
 
-import ch.fhnw.presentation.business.movie.entity.Movie;
+import ch.fhnw.business.movie.entity.Movie;
 
 import java.io.BufferedReader;
 import java.io.IOException;

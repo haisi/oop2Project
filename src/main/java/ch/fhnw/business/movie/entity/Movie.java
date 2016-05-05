@@ -1,11 +1,10 @@
-package ch.fhnw.presentation.business.movie.entity;
+package ch.fhnw.business.movie.entity;
 
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.Optional;
 
 /**
