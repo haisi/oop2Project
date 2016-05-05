@@ -30,6 +30,15 @@
     <build>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
+            <!-- Maven wrapper -->
+            <plugin>
+                <groupId>com.rimerosolutions.maven.plugins</groupId>
+                <artifactId>wrapper-maven-plugin</artifactId>
+                <version>0.0.4</version>
+                <configuration>
+                    <mavenVersion>3.3.1</mavenVersion>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.10</version>
