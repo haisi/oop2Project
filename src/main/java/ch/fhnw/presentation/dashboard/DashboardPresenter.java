@@ -5,6 +5,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import ch.fhnw.business.movie.entity.Movie;
 import ch.fhnw.business.movie.service.MovieService;
 import ch.fhnw.presentation.movieEditor.MovieEditorPresenter;
 import ch.fhnw.presentation.movieEditor.MovieEditorView;
@@ -12,9 +13,12 @@ import ch.fhnw.presentation.moviesTable.MoviesTablePresenter;
 import ch.fhnw.presentation.moviesTable.MoviesTableView;
 import ch.fhnw.presentation.toolbar.ToolbarPresenter;
 import ch.fhnw.presentation.toolbar.ToolbarView;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -36,21 +40,42 @@ public class DashboardPresenter implements Initializable {
     @Inject
     MovieService movieService;
 
+    private MoviesTableView moviesTableView;
+    private MoviesTablePresenter moviesTablePresenter;
+
+    private MovieEditorView movieEditorView;
+    private MovieEditorPresenter movieEditorPresenter;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        borderPane.setTop(new Label("Top pane: add here toolbar"));
-
         setToolbar();
+        createMoviesTableView();
+        createMovieEditor();
 
-        MoviesTableView moviesTableView = new MoviesTableView();
-        MoviesTablePresenter moviesTablePresenter = (MoviesTablePresenter) moviesTableView.getPresenter();
+        // Somehow the binding doesn't work sometimes, so we have to use a change listener
+//        movieEditorPresenter.selectedMovieProperty().bind(moviesTablePresenter.selectedMovieProperty());
+        moviesTablePresenter.selectedMovieProperty().addListener((observable, oldValue, newValue) -> {
+            movieEditorPresenter.selectedMovieProperty().set(newValue);
+        });
+
+    }
+
+    private void createMovieEditor() {
+        movieEditorView = new MovieEditorView();
+        ScrollPane scrollPane = new ScrollPane(movieEditorView.getView());
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+        movieEditorPresenter = (MovieEditorPresenter) movieEditorView.getPresenter();
+
+        splitPane.getItems().add(scrollPane);
+    }
+
+    private void createMoviesTableView() {
+        moviesTableView = new MoviesTableView();
+        moviesTablePresenter = (MoviesTablePresenter) moviesTableView.getPresenter();
         splitPane.getItems().add(moviesTableView.getView());
-
-        MovieEditorView movieEditorView = new MovieEditorView();
-        MovieEditorPresenter movieEditorPresenter = (MovieEditorPresenter) movieEditorView.getPresenter();
-        splitPane.getItems().add(movieEditorView.getView());
-
     }
 
     private void setToolbar() {

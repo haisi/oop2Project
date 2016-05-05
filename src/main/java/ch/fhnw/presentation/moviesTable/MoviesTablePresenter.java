@@ -2,6 +2,9 @@ package ch.fhnw.presentation.moviesTable;
 
 import ch.fhnw.business.movie.entity.Movie;
 import ch.fhnw.business.movie.service.MovieService;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,14 +46,22 @@ public class MoviesTablePresenter implements Initializable {
     @FXML
     TableColumn<Movie, String> mainActorColumn;
 
+    private ObjectProperty<Movie> selectedMovie = new SimpleObjectProperty<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        setCellValueFactories();
 
         List<Movie> allMovies = movieService.getAllMovies();
         data.addAll(allMovies);
         moviesTable.setItems(data);
+
+        // Use listener to set an ObjectProperty, instead of binding directly to selectedItemProperty
+        // because the selectedItemProperty is a read only object.
+        this.moviesTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            selectedMovie.set(newValue);
+        });
+
+        setCellValueFactories();
 
     }
 
@@ -62,5 +73,9 @@ public class MoviesTablePresenter implements Initializable {
         directorColumn.setCellValueFactory(cellData -> cellData.getValue().directorProperty());
         mainActorColumn.setCellValueFactory(cellData -> cellData.getValue().mainActorProperty());
 
+    }
+
+    public ObjectProperty<Movie> selectedMovieProperty() {
+        return selectedMovie;
     }
 }
