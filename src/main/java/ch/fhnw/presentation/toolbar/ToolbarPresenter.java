@@ -1,5 +1,8 @@
 package ch.fhnw.presentation.toolbar;
 
+import ch.fhnw.business.movie.entity.Movie;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -23,9 +26,17 @@ public class ToolbarPresenter implements Initializable {
     @FXML
     TextField searchField;
 
+    private ObjectProperty<Movie> selectedMovie = new SimpleObjectProperty<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        removeLbl.disableProperty().bind(selectedMovie.isNull());
+
+    }
+
+    public ObjectProperty<Movie> selectedMovieProperty() {
+        return selectedMovie;
     }
 
 }

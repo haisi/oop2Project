@@ -40,6 +40,9 @@ public class DashboardPresenter implements Initializable {
     @Inject
     MovieService movieService;
 
+    private ToolbarView toolbarView;
+    private ToolbarPresenter toolbarPresenter;
+
     private MoviesTableView moviesTableView;
     private MoviesTablePresenter moviesTablePresenter;
 
@@ -57,6 +60,7 @@ public class DashboardPresenter implements Initializable {
 //        movieEditorPresenter.selectedMovieProperty().bind(moviesTablePresenter.selectedMovieProperty());
         moviesTablePresenter.selectedMovieProperty().addListener((observable, oldValue, newValue) -> {
             movieEditorPresenter.selectedMovieProperty().set(newValue);
+            toolbarPresenter.selectedMovieProperty().set(newValue);
         });
 
     }
@@ -79,8 +83,8 @@ public class DashboardPresenter implements Initializable {
     }
 
     private void setToolbar() {
-        ToolbarView toolbarView = new ToolbarView();
-        ToolbarPresenter toolbarPresenter = (ToolbarPresenter) toolbarView.getPresenter();
+        toolbarView = new ToolbarView();
+        toolbarPresenter = (ToolbarPresenter) toolbarView.getPresenter();
         // TODO use toolbarPresenter to bind textfield-value to table
         // TODO add listener-object to toolbarPresenter for remove and add item
         borderPane.setTop(toolbarView.getView());
