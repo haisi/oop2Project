@@ -42,7 +42,7 @@ public class MovieService {
                         movie.setYearOfProduction(Integer.parseInt(strings[6]));
                         movie.addCountries(strings[7].split("/"));
                         movie.setDuration(Integer.parseInt(strings[8]));
-                        movie.setDuration(Integer.parseInt(strings[9]));
+                        movie.setFsk(Integer.parseInt(strings[9]));
                         movie.setGenre(strings[10]);
 
                         try {
