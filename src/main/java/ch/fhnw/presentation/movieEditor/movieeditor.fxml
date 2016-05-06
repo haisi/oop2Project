@@ -29,16 +29,16 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Spinner GridPane.columnIndex="1" />
+            <Spinner fx:id="yearSpinner" GridPane.columnIndex="1" />
             <Label text="Jahr" />
             <Label text="Titel" GridPane.rowIndex="1" />
             <Label text="Regisseur" GridPane.rowIndex="2" />
-            <TextField fx:id="title" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="directorField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Hauptdarsteller" GridPane.rowIndex="3" />
             <Label text="englischer Titel" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="mainActorField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="englishTitleField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <GridPane layoutX="10.0" layoutY="353.0" prefHeight="173.0" prefWidth="667.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
@@ -58,17 +58,17 @@
             <Label text="Genre" />
             <Label text="Land" GridPane.rowIndex="1" />
             <Label text="FSK-Altersfreigabe" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="countriesField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Oscars" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" />
-            <Spinner GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="genreField" GridPane.columnIndex="1" />
+            <Spinner fx:id="oscarsSpinner" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="fskComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Produktionsjahr" GridPane.columnIndex="2" />
             <Label text="Länge (Minuten)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Kinostart" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <DatePicker GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Spinner GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Spinner GridPane.columnIndex="3" />
+            <DatePicker fx:id="startDatePicker" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Spinner fx:id="durationSpinner" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Spinner fx:id="yearOfProductionSpinner" GridPane.columnIndex="3" />
          </children>
       </GridPane>
       <HBox layoutX="14.0" layoutY="14.0" prefHeight="100.0" prefWidth="473.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -77,17 +77,17 @@
                <children>
                   <HBox prefHeight="59.0" prefWidth="152.0">
                      <children>
-                        <Label prefHeight="21.0" prefWidth="70.0" text="1999" HBox.hgrow="ALWAYS" />
-                        <ImageView fitHeight="28.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="yearOfAwardLabel" prefHeight="21.0" prefWidth="70.0" text="1999" HBox.hgrow="ALWAYS" />
+                        <FlowPane fx:id="countriesPane" prefHeight="21.0" prefWidth="266.0" />
                      </children>
                   </HBox>
-                  <Label text="Title here" />
-                  <Label text="Label" />
-                  <Label text="Label" />
-                  <FlowPane fx:id="oscars" prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="titleLabel" text="Title here" />
+                  <Label fx:id="directorLabel" text="Label" />
+                  <Label fx:id="mainActorLabel" text="Label" />
+                  <FlowPane fx:id="oscarsPane" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </VBox>
-            <ImageView fitHeight="150.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="posterImage" fitHeight="150.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
    </children>

@@ -5,10 +5,12 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
@@ -17,20 +19,89 @@ import java.util.ResourceBundle;
 public class MovieEditorPresenter implements Initializable {
 
     @FXML
-    TextField title;
+    Label yearOfAwardLabel;
+    @FXML
+    Label titleLabel;
+    @FXML
+    FlowPane countriesPane;
+    @FXML
+    Label directorLabel;
+    @FXML
+    Label mainActorLabel;
+    @FXML
+    ImageView posterImage;
+    @FXML
+    FlowPane oscarsPane;
+
+    @FXML
+    TextField mainActorField;
+    @FXML
+    TextField englishTitleField;
+
+    @FXML
+    Spinner<Integer> yearSpinner;
+    @FXML
+    TextField titleField;
+    @FXML
+    TextField directorField;
+    @FXML
+    TextField genreField;
+    @FXML
+    TextField countriesField;
+    @FXML
+    Spinner<Integer> oscarsSpinner;
+
+    @FXML
+    Spinner<Integer> yearOfProductionSpinner;
+    @FXML
+    Spinner<Integer> durationSpinner;
+    @FXML
+    DatePicker startDatePicker;
+    //TODO find proper type for fsk
+    @FXML
+    ComboBox<Object> fskComboBox;
 
     private ObjectProperty<Movie> selectedMovie = new SimpleObjectProperty<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // TODO: extract max-values into config.file
+        yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, LocalDate.now().getYear()));
+        yearOfProductionSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, LocalDate.now().getYear()));
+        durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 700, 0));
+        oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, 0));
+
+        // TODO init combobox images
+
         selectedMovie.addListener((observable, oldValue, newValue) -> {
 
             if (newValue != null) {
-                title.setText(newValue.getTitle());
+                yearOfAwardLabel.setText(String.valueOf(newValue.getYearOfAward()));
+                titleLabel.setText(newValue.getTitle());
+                directorLabel.setText("Von " + newValue.getDirector());
+                mainActorLabel.setText("Mit " + newValue.getMainActor());
+
+                yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, newValue.getYearOfAward()));
+                titleField.setText(newValue.getTitle());
+                directorField.setText(newValue.getDirector());
+                mainActorField.setText(newValue.getMainActor());
+                englishTitleField.setText(newValue.getTitleEnglish());
+                genreField.setText(newValue.getGenre());
+                //TODO concat countries string with /
+                countriesField.setText(newValue.getCountry().get(0));
+
+                yearOfProductionSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, newValue.getYearOfProduction()));
+                durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 700, newValue.getDuration()));
+                startDatePicker.setValue(newValue.startDateProperty().get().orElse(null));
+
+                //TODO add combobox for FSK
+
+                oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, newValue.getNumberOfOscars()));
+
             } else {
                 // TODO: disable buttons
-                title.setText("empty");
+                titleField.setText("empty");
             }
         });
 
