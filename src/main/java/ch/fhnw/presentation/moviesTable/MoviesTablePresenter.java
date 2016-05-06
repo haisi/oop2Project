@@ -47,6 +47,7 @@ public class MoviesTablePresenter implements Initializable {
     TableColumn<Movie, String> mainActorColumn;
 
     private ObjectProperty<Movie> selectedMovie = new SimpleObjectProperty<>();
+    private ObjectProperty<Movie> deletedMovie = new SimpleObjectProperty<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,6 +60,10 @@ public class MoviesTablePresenter implements Initializable {
         // because the selectedItemProperty is a read only object.
         this.moviesTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             selectedMovie.set(newValue);
+        });
+
+        deletedMovie.addListener((observable, oldValue, newValue) -> {
+            data.remove(newValue);
         });
 
         setCellValueFactories();
@@ -78,4 +83,9 @@ public class MoviesTablePresenter implements Initializable {
     public ObjectProperty<Movie> selectedMovieProperty() {
         return selectedMovie;
     }
+
+    public ObjectProperty<Movie> deletedMovieProperty() {
+        return deletedMovie;
+    }
+
 }

@@ -28,15 +28,25 @@ public class ToolbarPresenter implements Initializable {
 
     private ObjectProperty<Movie> selectedMovie = new SimpleObjectProperty<>();
 
+    private ObjectProperty<Movie> deletedMovie = new SimpleObjectProperty<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         removeLbl.disableProperty().bind(selectedMovie.isNull());
 
+        removeLbl.setOnMouseClicked(event -> {
+            deletedMovie.set(selectedMovie.get());
+        });
+
     }
 
     public ObjectProperty<Movie> selectedMovieProperty() {
         return selectedMovie;
+    }
+
+    public ObjectProperty<Movie> deletedMovieProperty() {
+        return deletedMovie;
     }
 
 }
