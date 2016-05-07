@@ -1,6 +1,7 @@
 package ch.fhnw.presentation.movieEditor;
 
 import ch.fhnw.business.movie.entity.Movie;
+import com.google.common.base.Joiner;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -100,8 +101,9 @@ public class MovieEditorPresenter implements Initializable {
                 mainActorField.setText(newValue.getMainActor());
                 englishTitleField.setText(newValue.getTitleEnglish());
                 genreField.setText(newValue.getGenre());
-                //TODO concat countries string with /
-                countriesField.setText(newValue.getCountry().get(0));
+
+                String countriesJoined = Joiner.on("/").join(newValue.getCountry().toArray());
+                countriesField.setText(countriesJoined);
 
                 yearOfProductionSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, newValue.getYearOfProduction()));
                 durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 700, newValue.getDuration()));
