@@ -3,6 +3,7 @@ package ch.fhnw.presentation.movieEditor;
 import javafx.geometry.Pos;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -28,19 +29,12 @@ public class FskListCell extends ListCell<Integer> {
         if (item == null || empty) {
             setGraphic(null);
         } else {
-            final Color color;
 
-            switch (item) {
-                case 0: color = Color.RED; break;
-                case 6: color = Color.GREEN; break;
-                case 12: color = Color.BLUE; break;
-                case 16: color = Color.BLUEVIOLET; break;
-                case 18: color = Color.YELLOW; break;
-                default: color = Color.BLACK;
-            }
+            String imageUrl = getClass().getResource("/fsk_logos/FSK_" + item + "_logo.svg.png").toExternalForm();
+            ImageView image = new ImageView(imageUrl);
+            image.setPreserveRatio(true);
 
-            rectangle.setFill(color);
-            setGraphic(rectangle);
+            setGraphic(image);
         }
     }
 }
