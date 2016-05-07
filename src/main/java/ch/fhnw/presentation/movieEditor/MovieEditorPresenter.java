@@ -1,13 +1,22 @@
 package ch.fhnw.presentation.movieEditor;
 
 import ch.fhnw.business.movie.entity.Movie;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -59,7 +68,8 @@ public class MovieEditorPresenter implements Initializable {
     DatePicker startDatePicker;
     //TODO find proper type for fsk
     @FXML
-    ComboBox<Object> fskComboBox;
+    ComboBox<Integer> fskComboBox;
+    ObservableList<Integer> fskOptions = FXCollections.observableArrayList(0, 6, 12, 16, 18);
 
     private ObjectProperty<Movie> selectedMovie = new SimpleObjectProperty<>();
 
@@ -72,7 +82,9 @@ public class MovieEditorPresenter implements Initializable {
         durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 700, 0));
         oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, 0));
 
-        // TODO init combobox images
+        fskComboBox.setItems(fskOptions);
+        fskComboBox.setButtonCell(new FskListCell());
+        fskComboBox.setCellFactory(param -> new FskListCell());
 
         selectedMovie.addListener((observable, oldValue, newValue) -> {
 
@@ -95,7 +107,7 @@ public class MovieEditorPresenter implements Initializable {
                 durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 700, newValue.getDuration()));
                 startDatePicker.setValue(newValue.startDateProperty().get().orElse(null));
 
-                //TODO add combobox for FSK
+                fskComboBox.setValue(newValue.getFsk());
 
                 oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, newValue.getNumberOfOscars()));
 
