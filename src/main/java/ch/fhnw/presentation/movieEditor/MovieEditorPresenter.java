@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
@@ -19,6 +20,7 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -90,6 +92,11 @@ public class MovieEditorPresenter implements Initializable {
         selectedMovie.addListener((observable, oldValue, newValue) -> {
 
             if (newValue != null) {
+
+                // TODO: handle FileNotFoundException
+                String imageUrl = getClass().getResource("/posters/" + newValue.getId() + ".jpg").toExternalForm();
+                posterImage.setImage(new Image(imageUrl));
+
                 yearOfAwardLabel.setText(String.valueOf(newValue.getYearOfAward()));
                 titleLabel.setText(newValue.getTitle());
                 directorLabel.setText("Von " + newValue.getDirector());
