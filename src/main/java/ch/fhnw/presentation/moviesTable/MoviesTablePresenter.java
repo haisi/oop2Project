@@ -9,10 +9,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.TextAlignment;
 
 import javax.inject.Inject;
 import java.net.URL;
@@ -67,6 +70,24 @@ public class MoviesTablePresenter implements Initializable {
         });
 
         setCellValueFactories();
+
+        // Align text in year column to right
+        yearColumn.setCellFactory(cell -> new TableCell<Movie, Number>() {
+            @Override
+            protected void updateItem(Number item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setTextAlignment(TextAlignment.RIGHT);
+                    setAlignment(Pos.CENTER_RIGHT);
+                    setText(String.valueOf(item));
+                }
+
+            }
+        });
 
     }
 
