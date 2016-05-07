@@ -2,25 +2,18 @@ package ch.fhnw.presentation.movieEditor;
 
 import ch.fhnw.business.movie.entity.Movie;
 import com.google.common.base.Joiner;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Callback;
-import javafx.util.StringConverter;
-import javafx.util.converter.IntegerStringConverter;
 
-import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -97,6 +90,8 @@ public class MovieEditorPresenter implements Initializable {
                 String imageUrl = getClass().getResource("/posters/" + newValue.getId() + ".jpg").toExternalForm();
                 posterImage.setImage(new Image(imageUrl));
 
+                setCountriesFlags(newValue);
+
                 yearOfAwardLabel.setText(String.valueOf(newValue.getYearOfAward()));
                 titleLabel.setText(newValue.getTitle());
                 directorLabel.setText("Von " + newValue.getDirector());
@@ -125,6 +120,18 @@ public class MovieEditorPresenter implements Initializable {
                 titleField.setText("empty");
             }
         });
+
+    }
+
+    private void setCountriesFlags(Movie newValue) {
+
+        final ObservableList<Node> children = countriesPane.getChildren();
+        children.clear();
+        // TODO: handle FileNotFoundException
+        newValue.getCountry().stream().map(s -> {
+            String imageUrl = getClass().getResource("/flags/" + s.toLowerCase() + ".png").toExternalForm();
+            return new ImageView(imageUrl);
+        }).forEach(children::add);
 
     }
 
