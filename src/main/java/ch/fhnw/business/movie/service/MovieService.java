@@ -26,7 +26,7 @@ public class MovieService {
 
         InputStream resourceAsStream = MovieService.class.getClass().getResourceAsStream("/movies.csv");
 
-        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(resourceAsStream))) {
+        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(resourceAsStream, Charset.forName("UTF-8")))) {
             return buffer
                     .lines()
                     .skip(1)
