@@ -82,6 +82,24 @@ public class MovieEditorPresenter implements Initializable {
         fskComboBox.setButtonCell(new FskListCell());
         fskComboBox.setCellFactory(param -> new FskListCell());
 
+        oscarsSpinner.valueProperty().addListener((observable, oldValue, newNumberOfOscars) -> {
+
+            ObservableList<Node> children = oscarsPane.getChildren();
+            children.clear();
+
+            String imageUrl = getClass().getResource("/Oscar-logo.png").toExternalForm();
+            Image oscarImage = new Image(imageUrl);
+
+            for (int i = 0; i < newNumberOfOscars; i++) {
+                ImageView imageView = new ImageView(oscarImage);
+                imageView.setFitHeight(40);
+
+                imageView.setPreserveRatio(true);
+
+                children.add(imageView);
+            }
+        });
+
         selectedMovie.addListener((observable, oldValue, newValue) -> {
 
             if (newValue != null) {
