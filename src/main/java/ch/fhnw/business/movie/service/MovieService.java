@@ -2,10 +2,7 @@ package ch.fhnw.business.movie.service;
 
 import ch.fhnw.business.movie.entity.Movie;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -64,6 +61,11 @@ public class MovieService {
 
         return Collections.emptyList();
 
+    }
+
+    public void saveMovies(File file, List<Movie> movies) {
+        System.out.println("Saving: " + file.getAbsolutePath());
+        System.out.println(movies.toString());
     }
 
 }

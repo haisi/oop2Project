@@ -109,4 +109,10 @@ public class MoviesTablePresenter implements Initializable {
         return deletedMovie;
     }
 
+    /**
+     * @return ObservableList of movies
+     */
+    public ObservableList<Movie> getData() {
+        return data;
+    }
 }

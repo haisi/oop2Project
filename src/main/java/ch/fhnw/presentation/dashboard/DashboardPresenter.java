@@ -1,8 +1,10 @@
 package ch.fhnw.presentation.dashboard;
 
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import ch.fhnw.business.movie.entity.Movie;
@@ -15,6 +17,7 @@ import ch.fhnw.presentation.toolbar.ToolbarPresenter;
 import ch.fhnw.presentation.toolbar.ToolbarView;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -29,7 +32,7 @@ import javax.inject.Inject;
 /**
  * @author hasan kara <hasan.kara@fhnw.ch>
  */
-public class DashboardPresenter implements Initializable {
+public class DashboardPresenter implements Initializable, ToolbarPresenter.ToolbarActionsListener {
 
     @FXML
     BorderPane borderPane;
@@ -87,9 +90,15 @@ public class DashboardPresenter implements Initializable {
     private void setToolbar() {
         toolbarView = new ToolbarView();
         toolbarPresenter = (ToolbarPresenter) toolbarView.getPresenter();
+        toolbarPresenter.setToolbarListener(DashboardPresenter.this);
         // TODO use toolbarPresenter to bind textfield-value to table
         // TODO add listener-object to toolbarPresenter for remove and add item
         borderPane.setTop(toolbarView.getView());
     }
 
+    @Override
+    public void onSave(File file) {
+        ObservableList<Movie> movies = moviesTablePresenter.getData();
+        movieService.saveMovies(file, movies);
+    }
 }

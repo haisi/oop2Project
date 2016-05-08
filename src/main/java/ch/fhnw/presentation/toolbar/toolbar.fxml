@@ -11,7 +11,7 @@
         <TextField fx:id="searchField" layoutX="665.0" layoutY="14.0" promptText="%toolbar.search" AnchorPane.rightAnchor="14.0" />
         <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="10.0" prefHeight="41.0" prefWidth="388.0" spacing="10.0">
             <children>
-                <Label prefHeight="21.0" prefWidth="33.0" text="%toolbar.save" HBox.hgrow="ALWAYS" />
+                <Label fx:id="saveLbl" prefHeight="21.0" prefWidth="33.0" text="%toolbar.save" HBox.hgrow="ALWAYS" />
                 <Separator orientation="VERTICAL" prefHeight="200.0" />
                 <Label fx:id="addLbl" prefHeight="21.0" prefWidth="35.0" text="%toolbar.add" />
                 <Label fx:id="removeLbl" prefHeight="21.0" prefWidth="58.0" text="%toolbar.remove" />
