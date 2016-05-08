@@ -3,9 +3,13 @@ package ch.fhnw.business.movie.service;
 import ch.fhnw.business.movie.entity.Movie;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -63,9 +67,16 @@ public class MovieService {
 
     }
 
-    public void saveMovies(File file, List<Movie> movies) {
+    public void saveMovies(File file, List<Movie> movies) throws IOException {
         System.out.println("Saving: " + file.getAbsolutePath());
-        System.out.println(movies.toString());
+
+        final List<String> lines = new ArrayList<>();
+        // add title
+        lines.add("#id;Title;yearOfAward;director;mainActor;titleEnglish;yearOfProduction;country;duration;fsk;genre;startDate;numberOfOscars");
+
+        movies.forEach(movie -> lines.add(movie.toCsvRow()));
+
+        Files.write(file.toPath(), lines, Charset.forName("UTF-8"));
     }
 
 }

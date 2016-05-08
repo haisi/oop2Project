@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 /**
@@ -30,6 +31,42 @@ public class Movie {
 
     //TODO add constructor with all elements or builder-pattern (maybe lombdok to reduce boilerplate)
 
+    final transient DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+    /**
+     * Converts movie-object into a CSV-row.
+     *
+     * @return csv-row as string
+     */
+    public String toCsvRow() {
+
+        final char joiner = ';';
+
+        StringBuilder csv = new StringBuilder();
+        csv.append(id.get()).append(joiner);
+        csv.append(title.get()).append(joiner);
+        csv.append(yearOfAward.get()).append(joiner);
+        csv.append(director.get()).append(joiner);
+        csv.append(mainActor.get()).append(joiner);
+        csv.append(titleEnglish.get()).append(joiner);
+        csv.append(yearOfProduction.get()).append(joiner);
+        csv.append(String.join("/", country)).append(joiner);
+        csv.append(duration.get()).append(joiner);
+        csv.append(fsk.get()).append(joiner);
+        csv.append(genre.get()).append(joiner);
+
+        final String startDateStr;
+        if (startDate.get().isPresent()) {
+            startDateStr = dtf.format(startDate.get().get());
+        } else {
+            startDateStr = "-";
+        }
+        csv.append(startDateStr).append(joiner);
+        csv.append(numberOfOscars.get()).append(joiner);
+
+
+        return csv.toString();
+    }
 
     @Override
     public String toString() {

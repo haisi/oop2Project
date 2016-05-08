@@ -2,6 +2,7 @@ package ch.fhnw.presentation.dashboard;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -99,6 +100,11 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
     @Override
     public void onSave(File file) {
         ObservableList<Movie> movies = moviesTablePresenter.getData();
-        movieService.saveMovies(file, movies);
+        try {
+            movieService.saveMovies(file, movies);
+        } catch (IOException e) {
+            // TODO: add error dialog
+            e.printStackTrace();
+        }
     }
 }
