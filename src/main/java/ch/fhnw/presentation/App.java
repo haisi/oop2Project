@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -35,6 +37,7 @@ public class App extends Application {
         DashboardView appView = new DashboardView();
         Scene scene = new Scene(appView.getView());
         stage.setTitle("Oscar für den besten Film");
+        stage.getIcons().add(new Image(getClass().getResource("/Oscar-logo.png").toExternalForm()));
         final String uri = getClass().getResource("app.css").toExternalForm();
         scene.getStylesheets().add(uri);
         stage.setScene(scene);
