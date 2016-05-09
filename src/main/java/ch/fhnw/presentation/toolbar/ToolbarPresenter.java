@@ -3,6 +3,7 @@ package ch.fhnw.presentation.toolbar;
 import ch.fhnw.business.movie.entity.Movie;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -69,6 +70,10 @@ public class ToolbarPresenter implements Initializable {
 
         });
 
+    }
+
+    public StringProperty searchFieldTextProperty() {
+        return searchField.textProperty();
     }
 
     /**

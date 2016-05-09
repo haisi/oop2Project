@@ -2,11 +2,11 @@ package ch.fhnw.presentation.moviesTable;
 
 import ch.fhnw.business.movie.entity.Movie;
 import ch.fhnw.business.movie.service.MovieService;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -49,6 +49,7 @@ public class MoviesTablePresenter implements Initializable {
     @FXML
     TableColumn<Movie, String> mainActorColumn;
 
+    private StringProperty searchText = new SimpleStringProperty();
     private ObjectProperty<Movie> selectedMovie = new SimpleObjectProperty<>();
     private ObjectProperty<Movie> deletedMovie = new SimpleObjectProperty<>();
 
@@ -57,7 +58,36 @@ public class MoviesTablePresenter implements Initializable {
 
         List<Movie> allMovies = movieService.getAllMovies();
         data.addAll(allMovies);
-        moviesTable.setItems(data);
+
+        FilteredList<Movie> filteredData = new FilteredList<>(data, p -> true);
+
+        searchText.addListener((observable, oldValue, searchValue) -> {
+
+            filteredData.setPredicate(movie -> {
+                // If filter text is empty, display all persons.
+                if (searchValue == null || searchValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = searchValue.toLowerCase();
+
+                if (movie.getTitle().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches title
+                } else if (movie.getTitleEnglish().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches english title
+                }
+                return false; // Does not match.
+            });
+
+        });
+
+        // Wrap the FilteredList in a SortedList.
+        SortedList<Movie> sortedData = new SortedList<>(filteredData);
+
+        // Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(moviesTable.comparatorProperty());
+
+        moviesTable.setItems(sortedData);
 
         // Use listener to set an ObjectProperty, instead of binding directly to selectedItemProperty
         // because the selectedItemProperty is a read only object.
@@ -100,6 +130,11 @@ public class MoviesTablePresenter implements Initializable {
         mainActorColumn.setCellValueFactory(cellData -> cellData.getValue().mainActorProperty());
 
     }
+
+    public StringProperty searchTextProperty() {
+        return searchText;
+    }
+
 
     public ObjectProperty<Movie> selectedMovieProperty() {
         return selectedMovie;

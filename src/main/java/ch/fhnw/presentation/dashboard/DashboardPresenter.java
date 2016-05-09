@@ -69,6 +69,8 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
 
         moviesTablePresenter.deletedMovieProperty().bind(toolbarPresenter.deletedMovieProperty());
 
+        moviesTablePresenter.searchTextProperty().bind(toolbarPresenter.searchFieldTextProperty());
+
     }
 
     private void createMovieEditor() {
