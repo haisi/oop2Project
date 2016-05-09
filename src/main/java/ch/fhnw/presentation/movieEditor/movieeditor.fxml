@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" minHeight="180.0" prefHeight="534.0" prefWidth="493.0" styleClass="airpad" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.fhnw.presentation.movieEditor.MovieEditorPresenter">
+<AnchorPane id="AnchorPane" fx:id="root" minHeight="180.0" prefHeight="534.0" prefWidth="493.0" styleClass="airpad" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.fhnw.presentation.movieEditor.MovieEditorPresenter">
    <children>
       <GridPane layoutX="10.0" layoutY="157.0" prefHeight="177.0" prefWidth="473.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
         <columnConstraints>
@@ -33,12 +33,12 @@
             <Label text="Jahr" />
             <Label text="Titel" GridPane.rowIndex="1" />
             <Label text="Regisseur" GridPane.rowIndex="2" />
-            <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="directorField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="titleField" promptText="%title.placeholder" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="directorField" promptText="%director.placeholder" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Hauptdarsteller" GridPane.rowIndex="3" />
             <Label text="englischer Titel" GridPane.rowIndex="4" />
-            <TextField fx:id="mainActorField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="englishTitleField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="mainActorField" promptText="%mainActor.placeholder" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="englishTitleField" promptText="%englishTitle.placeholder" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <GridPane layoutX="10.0" layoutY="353.0" prefHeight="173.0" prefWidth="667.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
@@ -58,9 +58,9 @@
             <Label text="Genre" />
             <Label text="Land" GridPane.rowIndex="1" />
             <Label text="FSK-Altersfreigabe" GridPane.rowIndex="2" />
-            <TextField fx:id="countriesField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="countriesField" promptText="%counties.placeholder" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Oscars" GridPane.rowIndex="3" />
-            <TextField fx:id="genreField" GridPane.columnIndex="1" />
+            <TextField fx:id="genreField" promptText="%genre.placeholder" GridPane.columnIndex="1" />
             <Spinner fx:id="oscarsSpinner" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ComboBox fx:id="fskComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Produktionsjahr" GridPane.columnIndex="2" />
