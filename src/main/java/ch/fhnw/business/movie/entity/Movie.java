@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -29,7 +30,36 @@ public class Movie {
     final ObjectProperty<Optional<LocalDate>> startDate = new SimpleObjectProperty<>();
     final IntegerProperty numberOfOscars = new SimpleIntegerProperty();
 
-    //TODO add constructor with all elements or builder-pattern (maybe lombdok to reduce boilerplate)
+    public Movie() {
+        // Keep empty
+    }
+
+    public Movie(int id, String title, int yearOfAward, String director, String mainActor, String titleEnglish,
+                 int yearOfProduction, List<String> countries, int duration, int fsk, String genre, int numberOfOscars) {
+
+        this(id, title, yearOfAward, director, mainActor, titleEnglish, yearOfProduction, countries,
+                duration, fsk, genre, null, numberOfOscars);
+
+    }
+
+    public Movie(int id, String title, int yearOfAward, String director, String mainActor, String titleEnglish,
+                 int yearOfProduction, List<String> countries, int duration, int fsk, String genre, LocalDate startDate,
+                 int numberOfOscars) {
+
+        this.id.set(id);
+        this.title.set(title);
+        this.yearOfAward.set(yearOfAward);
+        this.director.set(director);
+        this.mainActor.set(mainActor);
+        this.titleEnglish.set(titleEnglish);
+        this.yearOfProduction.set(yearOfProduction);
+        this.country.addAll(countries);
+        this.duration.set(duration);
+        this.fsk.set(fsk);
+        this.genre.set(genre);
+        this.startDate.set(Optional.ofNullable(startDate));
+        this.numberOfOscars.set(numberOfOscars);
+    }
 
     final transient DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
@@ -62,8 +92,9 @@ public class Movie {
             startDateStr = "-";
         }
         csv.append(startDateStr).append(joiner);
-        csv.append(numberOfOscars.get()).append(joiner);
 
+        // Last append shouldn't be the joiner!
+        csv.append(numberOfOscars.get());
 
         return csv.toString();
     }
