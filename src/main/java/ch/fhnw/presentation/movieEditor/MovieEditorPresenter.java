@@ -72,11 +72,7 @@ public class MovieEditorPresenter implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // TODO: extract max-values into config.file
-        yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, LocalDate.now().getYear()));
-        yearOfProductionSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, LocalDate.now().getYear()));
-        durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 700, 0));
-        oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, 0));
+        clearEditor();
 
         fskComboBox.setItems(fskOptions);
         fskComboBox.setButtonCell(new FskListCell());
@@ -135,34 +131,37 @@ public class MovieEditorPresenter implements Initializable {
 
             } else {
 
-                titleLabel.setText("empty");
-                directorLabel.setText("empty");
-                mainActorLabel.setText("empty");
-                yearOfAwardLabel.setText("empty");
-
-                oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
-                durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
-                yearOfProductionSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
-                yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
-                startDatePicker.setValue(null);
-
-                posterImage.setImage(null);
-                countriesPane.getChildren().clear();
-                oscarsPane.getChildren().clear();
-
-                fskComboBox.setValue(null);
-
-                countriesField.setText(null);
-                genreField.setText(null);
-                englishTitleField.setText(null);
-                mainActorField.setText(null);
-                directorField.setText(null);
-                titleField.setText(null);
-
+                clearEditor();
 
             }
         });
 
+    }
+
+    private void clearEditor() {
+        titleLabel.setText("empty");
+        directorLabel.setText("empty");
+        mainActorLabel.setText("empty");
+        yearOfAwardLabel.setText("empty");
+
+        oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+        durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+        yearOfProductionSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+        yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+        startDatePicker.setValue(null);
+
+        posterImage.setImage(null);
+        countriesPane.getChildren().clear();
+        oscarsPane.getChildren().clear();
+
+        fskComboBox.setValue(null);
+
+        countriesField.setText(null);
+        genreField.setText(null);
+        englishTitleField.setText(null);
+        mainActorField.setText(null);
+        directorField.setText(null);
+        titleField.setText(null);
     }
 
     private void setCountriesFlags(Movie newValue) {
