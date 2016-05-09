@@ -134,8 +134,32 @@ public class MovieEditorPresenter implements Initializable {
                 oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, newValue.getNumberOfOscars()));
 
             } else {
-                // TODO: disable buttons
-                titleField.setText("empty");
+
+                titleLabel.setText("empty");
+                directorLabel.setText("empty");
+                mainActorLabel.setText("empty");
+                yearOfAwardLabel.setText("empty");
+
+                oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+                durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+                yearOfProductionSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+                yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+                startDatePicker.setValue(null);
+
+                posterImage.setImage(null);
+                countriesPane.getChildren().clear();
+                oscarsPane.getChildren().clear();
+
+                fskComboBox.setValue(null);
+
+                countriesField.setText(null);
+                genreField.setText(null);
+                englishTitleField.setText(null);
+                mainActorField.setText(null);
+                directorField.setText(null);
+                titleField.setText(null);
+
+
             }
         });
 
