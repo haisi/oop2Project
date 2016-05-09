@@ -114,6 +114,7 @@ public class MovieEditorPresenter implements Initializable {
 
             if (newValue != null) {
 
+                root.setDisable(false);
                 masker.setVisible(false);
 
                 // TODO: handle FileNotFoundException
@@ -148,6 +149,7 @@ public class MovieEditorPresenter implements Initializable {
 
             } else {
 
+                root.setDisable(true);
                 masker.setVisible(true);
                 clearEditor();
 
