@@ -12,7 +12,11 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import org.controlsfx.control.MaskerPane;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -22,6 +26,11 @@ import java.util.ResourceBundle;
  * @author Hasan Kara <hasan.kara@fhnw.ch>
  */
 public class MovieEditorPresenter implements Initializable {
+
+    @FXML
+    StackPane root;
+
+    private MaskerPane masker = new MaskerPane();
 
     @FXML
     Label yearOfAwardLabel;
@@ -72,6 +81,11 @@ public class MovieEditorPresenter implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        root.getChildren().addAll(masker);
+        masker.setVisible(true);
+        masker.setProgressVisible(false);
+        masker.setText("Select a movie");
+
         clearEditor();
 
         fskComboBox.setItems(fskOptions);
@@ -100,6 +114,8 @@ public class MovieEditorPresenter implements Initializable {
 
             if (newValue != null) {
 
+                masker.setVisible(false);
+
                 // TODO: handle FileNotFoundException
                 String imageUrl = getClass().getResource("/posters/" + newValue.getId() + ".jpg").toExternalForm();
                 posterImage.setImage(new Image(imageUrl));
@@ -111,6 +127,7 @@ public class MovieEditorPresenter implements Initializable {
                 directorLabel.setText("Von " + newValue.getDirector());
                 mainActorLabel.setText("Mit " + newValue.getMainActor());
 
+                // TODO: extract max-values into config.file
                 yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, newValue.getYearOfAward()));
                 titleField.setText(newValue.getTitle());
                 directorField.setText(newValue.getDirector());
@@ -131,6 +148,7 @@ public class MovieEditorPresenter implements Initializable {
 
             } else {
 
+                masker.setVisible(true);
                 clearEditor();
 
             }
