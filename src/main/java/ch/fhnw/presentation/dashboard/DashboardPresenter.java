@@ -63,9 +63,11 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
         // Somehow the binding doesn't work sometimes, so we have to use a change listener
 //        movieEditorPresenter.selectedMovieProperty().bind(moviesTablePresenter.selectedMovieProperty());
         moviesTablePresenter.selectedMovieProperty().addListener((observable, oldValue, newValue) -> {
-            movieEditorPresenter.selectedMovieProperty().set(newValue);
+//            movieEditorPresenter.selectedMovieProperty().set(newValue);
             toolbarPresenter.selectedMovieProperty().set(newValue);
         });
+
+        moviesTablePresenter.selectedMovieProperty().bindBidirectional(movieEditorPresenter.selectedMovieProperty());
 
         moviesTablePresenter.deletedMovieProperty().bind(toolbarPresenter.deletedMovieProperty());
 

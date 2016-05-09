@@ -81,6 +81,15 @@ public class MovieEditorPresenter implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        titleField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                Movie movie = selectedMovie.get();
+                movie.setTitle(newValue);
+
+                selectedMovie.set(movie);
+            }
+        });
+
         root.getChildren().addAll(masker);
         masker.setVisible(true);
         masker.setProgressVisible(false);
