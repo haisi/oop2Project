@@ -275,6 +275,7 @@ public class MovieEditorPresenter implements Initializable {
         children.clear();
 
         newValue.getCountry().stream()
+                .distinct()
                 .map(s -> getClass().getResource("/flags/" + s.toLowerCase() + ".png"))
                 .filter(Objects::nonNull)
                 .map(resource -> {
