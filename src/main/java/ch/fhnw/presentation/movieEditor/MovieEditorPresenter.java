@@ -12,14 +12,15 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import org.controlsfx.control.MaskerPane;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -78,16 +79,86 @@ public class MovieEditorPresenter implements Initializable {
 
     private ObjectProperty<Movie> selectedMovie = new SimpleObjectProperty<>();
 
+    private void addBinding(TextField textField, MovieStringAttributeSetter setter) {
+
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                Movie movie = selectedMovie.get();
+                setter.setString(movie, newValue);
+                selectedMovie.set(movie);
+            }
+        });
+    }
+
+    private void addBinding(Spinner<Integer> spinner, MovieIntegerAttributeSetter setter) {
+
+        spinner.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                Movie movie = selectedMovie.get();
+                setter.setInteger(movie, newValue);
+                selectedMovie.set(movie);
+            }
+        });
+    }
+
+    private void addBinding(ComboBox<Integer> comboBox, MovieIntegerAttributeSetter setter) {
+
+        comboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                Movie movie = selectedMovie.get();
+                setter.setInteger(movie, newValue);
+                selectedMovie.set(movie);
+            }
+        });
+    }
+
+    private void addBinding(DatePicker datePicker, MovieLocalDateAttributeSetter setter) {
+
+        datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            Movie movie = selectedMovie.get();
+            setter.setLocalDate(movie, newValue);
+            selectedMovie.set(movie);
+        });
+    }
+
+
+    @FunctionalInterface
+    public interface MovieStringAttributeSetter {
+        void setString(Movie movie, String newValue);
+    }
+
+    @FunctionalInterface
+    public interface MovieIntegerAttributeSetter {
+        void setInteger(Movie movie, Integer newValue);
+    }
+
+    @FunctionalInterface
+    public interface MovieLocalDateAttributeSetter {
+        void setLocalDate(Movie movie, LocalDate newValue);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        titleField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                Movie movie = selectedMovie.get();
-                movie.setTitle(newValue);
+        addBinding(titleField, Movie::setTitle);
+        addBinding(englishTitleField, Movie::setTitleEnglish);
+        addBinding(directorField, Movie::setDirector);
+        addBinding(mainActorField, Movie::setMainActor);
+        addBinding(genreField, Movie::setGenre);
+        addBinding(countriesField, (movie, newValue) -> {
+            String[] countries = newValue.split("/");
+            movie.setCountry(FXCollections.observableArrayList(countries));
+        });
 
-                selectedMovie.set(movie);
-            }
+        addBinding(yearOfProductionSpinner, Movie::setYearOfProduction);
+        addBinding(yearSpinner, Movie::setYearOfAward);
+        addBinding(oscarsSpinner, Movie::setNumberOfOscars);
+        addBinding(durationSpinner, Movie::setDuration);
+
+        addBinding(fskComboBox, Movie::setFsk);
+
+        addBinding(startDatePicker, (movie, newStartDate) -> {
+                movie.setStartDate(Optional.ofNullable(newStartDate));
         });
 
         root.getChildren().addAll(masker);
