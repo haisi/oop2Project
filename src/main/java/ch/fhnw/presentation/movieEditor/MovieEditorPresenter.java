@@ -93,7 +93,7 @@ public class MovieEditorPresenter implements Initializable {
     private void addBinding(Spinner<Integer> spinner, MovieIntegerAttributeSetter setter) {
 
         spinner.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
+            if (newValue != null && selectedMovie.isNotNull().get()) {
                 Movie movie = selectedMovie.get();
                 setter.setInteger(movie, newValue);
                 selectedMovie.set(movie);
