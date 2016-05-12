@@ -18,10 +18,7 @@ import org.controlsfx.control.MaskerPane;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * @author Hasan Kara <hasan.kara@fhnw.ch>
@@ -197,9 +194,13 @@ public class MovieEditorPresenter implements Initializable {
                 root.setDisable(false);
                 masker.setVisible(false);
 
-                // TODO: handle FileNotFoundException
-                String imageUrl = getClass().getResource("/posters/" + newValue.getId() + ".jpg").toExternalForm();
-                posterImage.setImage(new Image(imageUrl));
+                URL resource = getClass().getResource("/posters/" + newValue.getId() + ".jpg");
+                if (resource != null) {
+                    String imageUrl = resource.toExternalForm();
+                    posterImage.setImage(new Image(imageUrl));
+                } else {
+                    posterImage.setImage(null);
+                }
 
                 setCountriesFlags(newValue);
 
@@ -268,11 +269,15 @@ public class MovieEditorPresenter implements Initializable {
 
         final ObservableList<Node> children = countriesPane.getChildren();
         children.clear();
-        // TODO: handle FileNotFoundException
-        newValue.getCountry().stream().map(s -> {
-            String imageUrl = getClass().getResource("/flags/" + s.toLowerCase() + ".png").toExternalForm();
-            return new ImageView(imageUrl);
-        }).forEach(children::add);
+
+        newValue.getCountry().stream()
+                .map(s -> getClass().getResource("/flags/" + s.toLowerCase() + ".png"))
+                .filter(Objects::nonNull)
+                .map(resource -> {
+                    String imageUrl = resource.toExternalForm();
+                    return new ImageView(imageUrl);
+                })
+                .forEach(children::add);
 
     }
 

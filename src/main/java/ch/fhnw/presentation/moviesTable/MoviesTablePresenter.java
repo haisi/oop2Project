@@ -10,7 +10,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -129,6 +128,16 @@ public class MoviesTablePresenter implements Initializable {
         directorColumn.setCellValueFactory(cellData -> cellData.getValue().directorProperty());
         mainActorColumn.setCellValueFactory(cellData -> cellData.getValue().mainActorProperty());
 
+    }
+
+    public Movie addNewMovie() {
+        Movie newEmptyMovie = movieService.createNewEmptyMovie();
+
+        data.add(0, newEmptyMovie);
+        moviesTable.scrollTo(0);
+        moviesTable.getSelectionModel().select(0);
+
+        return newEmptyMovie;
     }
 
     public StringProperty searchTextProperty() {

@@ -111,4 +111,9 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onAddNewMovie() {
+        moviesTablePresenter.addNewMovie();
+    }
 }

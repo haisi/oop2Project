@@ -79,4 +79,9 @@ public class MovieService {
         Files.write(file.toPath(), lines, Charset.forName("UTF-8"));
     }
 
+    public Movie createNewEmptyMovie() {
+        long id = System.currentTimeMillis();
+        return new Movie(id, "", 0, "", "", "", 0, Collections.emptyList(), 0, 0, "", 0);
+    }
+
 }

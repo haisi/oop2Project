@@ -49,6 +49,12 @@ public class ToolbarPresenter implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        addLbl.setOnMouseClicked(event -> {
+            toolbarListener
+                    .orElseThrow(() -> new IllegalStateException("ToolbarListener must be set!"))
+                    .onAddNewMovie();
+        });
+
         removeLbl.disableProperty().bind(selectedMovie.isNull());
 
         removeLbl.setOnMouseClicked(event -> {
@@ -94,6 +100,7 @@ public class ToolbarPresenter implements Initializable {
 
     public interface ToolbarActionsListener {
         void onSave(File file);
+        void onAddNewMovie();
     }
 
 }
