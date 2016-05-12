@@ -14,7 +14,7 @@ import java.util.Optional;
  */
 public class Movie {
 
-    final IntegerProperty id = new SimpleIntegerProperty();
+    final LongProperty id = new SimpleLongProperty();
     // TODO maybe status of entity (not saved and etc.)
     final StringProperty title = new SimpleStringProperty();
     final IntegerProperty yearOfAward = new SimpleIntegerProperty();
@@ -34,7 +34,7 @@ public class Movie {
         // Keep empty
     }
 
-    public Movie(int id, String title, int yearOfAward, String director, String mainActor, String titleEnglish,
+    public Movie(long id, String title, int yearOfAward, String director, String mainActor, String titleEnglish,
                  int yearOfProduction, List<String> countries, int duration, int fsk, String genre, int numberOfOscars) {
 
         this(id, title, yearOfAward, director, mainActor, titleEnglish, yearOfProduction, countries,
@@ -42,7 +42,7 @@ public class Movie {
 
     }
 
-    public Movie(int id, String title, int yearOfAward, String director, String mainActor, String titleEnglish,
+    public Movie(long id, String title, int yearOfAward, String director, String mainActor, String titleEnglish,
                  int yearOfProduction, List<String> countries, int duration, int fsk, String genre, LocalDate startDate,
                  int numberOfOscars) {
 
@@ -138,11 +138,11 @@ public class Movie {
     //TODO property-getter for list of countries
 
 
-    public int getId() {
+    public long getId() {
         return id.get();
     }
 
-    public IntegerProperty idProperty() {
+    public LongProperty idProperty() {
         return id;
     }
 
