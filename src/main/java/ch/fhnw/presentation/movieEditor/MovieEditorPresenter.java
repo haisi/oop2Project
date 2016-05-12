@@ -169,6 +169,10 @@ public class MovieEditorPresenter implements Initializable {
         fskComboBox.setButtonCell(new FskListCell());
         fskComboBox.setCellFactory(param -> new FskListCell());
 
+        countriesField.textProperty().addListener((observable, oldValue, newValue) -> {
+            setCountriesFlags(selectedMovie.getValue());
+        });
+
         oscarsSpinner.valueProperty().addListener((observable, oldValue, newNumberOfOscars) -> {
 
             ObservableList<Node> children = oscarsPane.getChildren();
