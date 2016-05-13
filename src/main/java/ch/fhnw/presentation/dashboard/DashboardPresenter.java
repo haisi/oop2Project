@@ -16,17 +16,16 @@ import ch.fhnw.presentation.moviesTable.MoviesTablePresenter;
 import ch.fhnw.presentation.moviesTable.MoviesTableView;
 import ch.fhnw.presentation.toolbar.ToolbarPresenter;
 import ch.fhnw.presentation.toolbar.ToolbarView;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import javax.inject.Inject;
 
@@ -40,6 +39,9 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
 
     @FXML
     SplitPane splitPane;
+
+    @Inject
+    Stage primaryStage;
 
     @Inject
     MovieService movieService;
@@ -106,10 +108,32 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
         ObservableList<Movie> movies = moviesTablePresenter.getData();
         try {
             movieService.saveMovies(file, movies);
+            showSuccessfulSavedNotification(file);
         } catch (IOException e) {
-            // TODO: add error dialog
+            showSavingFailedNotification(file);
             e.printStackTrace();
         }
+    }
+
+    private void showSuccessfulSavedNotification(final File file) {
+        Notifications.create()
+                .title("Saved file")
+                .text(file.getAbsolutePath())
+                .owner(primaryStage)
+                .hideAfter(Duration.seconds(3))
+                .position(Pos.BOTTOM_RIGHT)
+                .onAction(event -> System.out.println("Notification clicked on!")) //TODO open file on click
+                .showConfirm();
+    }
+
+    private void showSavingFailedNotification(final File file) {
+        Notifications.create()
+                .title("Failed to save file!")
+                .text(file.getAbsolutePath())
+                .owner(primaryStage)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .showError();
     }
 
     @Override
