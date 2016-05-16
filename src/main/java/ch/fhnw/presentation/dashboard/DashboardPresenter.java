@@ -4,8 +4,7 @@ package ch.fhnw.presentation.dashboard;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import ch.fhnw.business.movie.entity.Movie;
@@ -20,8 +19,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -139,5 +141,33 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
     @Override
     public void onAddNewMovie() {
         moviesTablePresenter.addNewMovie();
+    }
+
+    @Override
+    public void onChangeLanguage() {
+        if (Locale.getDefault().equals(Locale.GERMAN)) {
+            Locale.setDefault(Locale.ENGLISH);
+        } else {
+            Locale.setDefault(Locale.GERMAN);
+        }
+
+        DashboardView dashboardView = new DashboardView();
+        Parent newDashBoardViewInstance = dashboardView.getView();
+
+        // replace old view-instance with new one
+        AnchorPane root = (AnchorPane) primaryStage.getScene().getRoot();
+        ObservableList<Node> children = root.getChildren();
+        children.clear();
+        children.add(newDashBoardViewInstance);
+
+        // set anchors to the edge of stage
+        root = (AnchorPane) primaryStage.getScene().getRoot();
+
+        Node node = root.getChildren().get(0);
+        AnchorPane.setBottomAnchor(node, 0d);
+        AnchorPane.setTopAnchor(node, 0d);
+        AnchorPane.setLeftAnchor(node, 0d);
+        AnchorPane.setRightAnchor(node, 0d);
+
     }
 }

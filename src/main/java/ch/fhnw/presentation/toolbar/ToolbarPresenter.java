@@ -4,8 +4,6 @@ import ch.fhnw.business.movie.entity.Movie;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -36,6 +34,9 @@ public class ToolbarPresenter implements Initializable {
 
     @FXML
     Label removeLbl;
+
+    @FXML
+    Label changeLangLbl;
 
     @FXML
     TextField searchField;
@@ -78,6 +79,13 @@ public class ToolbarPresenter implements Initializable {
 
         });
 
+        changeLangLbl.setOnMouseClicked(event -> {
+            toolbarListener
+                    .orElseThrow(() -> new IllegalStateException("ToolbarListener must be set!"))
+                    .onChangeLanguage();
+
+        });
+
     }
 
     public StringProperty searchFieldTextProperty() {
@@ -103,6 +111,7 @@ public class ToolbarPresenter implements Initializable {
     public interface ToolbarActionsListener {
         void onSave(File file);
         void onAddNewMovie();
+        void onChangeLanguage();
     }
 
 }
