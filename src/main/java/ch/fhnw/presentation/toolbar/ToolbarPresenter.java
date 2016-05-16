@@ -70,9 +70,11 @@ public class ToolbarPresenter implements Initializable {
             // Show save file dialog
             File file = fileChooser.showSaveDialog(primaryStage);
 
-            toolbarListener
-                    .orElseThrow(() -> new IllegalStateException("ToolbarListener must be set!"))
-                    .onSave(file);
+            if (file != null) {
+                toolbarListener
+                        .orElseThrow(() -> new IllegalStateException("ToolbarListener must be set!"))
+                        .onSave(file);
+            }
 
         });
 
