@@ -2,8 +2,10 @@ package ch.fhnw.presentation.movieEditor;
 
 import ch.fhnw.business.movie.entity.Movie;
 import com.google.common.base.Joiner;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -165,6 +167,11 @@ public class MovieEditorPresenter implements Initializable {
 
         clearEditor();
 
+        titleLabel.textProperty().bind(titleField.textProperty());
+        directorLabel.textProperty().bind(Bindings.concat(resources.getString("director.from"), " ", directorField.textProperty()));
+        mainActorLabel.textProperty().bind(Bindings.concat(resources.getString("mainActors.with"), " ", mainActorField.textProperty()));
+        yearOfAwardLabel.textProperty().bind(yearSpinner.valueProperty().asString());
+
         fskComboBox.setItems(fskOptions);
         fskComboBox.setButtonCell(new FskListCell());
         fskComboBox.setCellFactory(param -> new FskListCell());
@@ -209,11 +216,6 @@ public class MovieEditorPresenter implements Initializable {
                 }
 
                 setCountriesFlags(newValue);
-
-                yearOfAwardLabel.setText(String.valueOf(newValue.getYearOfAward()));
-                titleLabel.setText(newValue.getTitle());
-                directorLabel.setText("Von " + newValue.getDirector());
-                mainActorLabel.setText("Mit " + newValue.getMainActor());
 
                 // TODO: extract max-values into config.file
                 yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, newValue.getYearOfAward()));
