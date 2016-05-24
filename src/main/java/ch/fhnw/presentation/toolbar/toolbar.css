@@ -1,0 +1,30 @@
+#add {
+    -fx-background-image: url('images/add.svg.png');
+}
+#find {
+    -fx-background-image: url('images/find.svg.png');
+}
+#redo {
+    -fx-background-image: url('images/redo.svg.png');
+}
+#remove {
+    -fx-background-image: url('images/remove.svg.png');
+}
+#save {
+    -fx-background-image: url('images/save.svg.png');
+}
+#undo {
+    -fx-background-image: url('images/undo.svg.png');
+}
+
+.button {
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+
+    -fx-pref-width: 52;
+    -fx-pref-height: 52;
+    -fx-max-height: 52;
+    -fx-max-width: 52;
+    -fx-min-height: 52;
+    -fx-min-width: 52;
+}

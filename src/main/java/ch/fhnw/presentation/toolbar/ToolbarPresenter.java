@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -27,13 +28,13 @@ public class ToolbarPresenter implements Initializable {
     Stage primaryStage;
 
     @FXML
-    Label saveLbl;
+    Button saveBtn;
 
     @FXML
-    Label addLbl;
+    Button addBtn;
 
     @FXML
-    Label removeLbl;
+    Button removeBtn;
 
     @FXML
     Label changeLangLbl;
@@ -50,19 +51,19 @@ public class ToolbarPresenter implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        addLbl.setOnMouseClicked(event -> {
+        addBtn.setOnMouseClicked(event -> {
             toolbarListener
                     .orElseThrow(() -> new IllegalStateException("ToolbarListener must be set!"))
                     .onAddNewMovie();
         });
 
-        removeLbl.disableProperty().bind(selectedMovie.isNull());
+        removeBtn.disableProperty().bind(selectedMovie.isNull());
 
-        removeLbl.setOnMouseClicked(event -> {
+        removeBtn.setOnMouseClicked(event -> {
             deletedMovie.set(selectedMovie.get());
         });
 
-        saveLbl.setOnMouseClicked(event -> {
+        saveBtn.setOnMouseClicked(event -> {
             FileChooser fileChooser = new FileChooser();
             // Set extension filter
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV-files (*.csv)", "*.csv");
