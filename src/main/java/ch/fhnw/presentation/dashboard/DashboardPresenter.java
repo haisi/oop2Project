@@ -82,8 +82,10 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
     private void createMovieEditor() {
         movieEditorView = new MovieEditorView();
         ScrollPane scrollPane = new ScrollPane(movieEditorView.getView());
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
 
         movieEditorPresenter = (MovieEditorPresenter) movieEditorView.getPresenter();
 
