@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane fx:id="root" styleClass="root" prefHeight="530.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.fhnw.presentation.movieEditor.MovieEditorPresenter">
+<StackPane fx:id="root" prefHeight="530.0" prefWidth="667.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.fhnw.presentation.movieEditor.MovieEditorPresenter">
    <children>
       <VBox>
          <children>
@@ -24,8 +24,8 @@
                      <children>
                         <HBox prefHeight="59.0" prefWidth="152.0">
                            <children>
-                              <Label fx:id="yearOfAwardLabel" prefHeight="21.0" prefWidth="70.0" text="1999" HBox.hgrow="ALWAYS" />
-                              <FlowPane fx:id="countriesPane" prefHeight="21.0" prefWidth="266.0" />
+                              <Label fx:id="yearOfAwardLabel" text="Label" />
+                              <FlowPane fx:id="countriesPane" alignment="TOP_RIGHT" prefHeight="21.0" prefWidth="266.0" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                         <Label fx:id="titleLabel" text="Title here" />
