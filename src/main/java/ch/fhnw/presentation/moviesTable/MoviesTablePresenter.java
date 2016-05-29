@@ -2,6 +2,7 @@ package ch.fhnw.presentation.moviesTable;
 
 import ch.fhnw.business.movie.entity.Movie;
 import ch.fhnw.business.movie.service.MovieService;
+import ch.fhnw.presentation.util.LevenshteinDistance;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +26,8 @@ import java.util.ResourceBundle;
  * @author Hasan Kara <hasan.kara@fhnw.ch>
  */
 public class MoviesTablePresenter implements Initializable {
+
+    public static final int MAX_DISTANCE = 10;
 
     @Inject
     MovieService movieService;
@@ -51,6 +54,7 @@ public class MoviesTablePresenter implements Initializable {
     private StringProperty searchText = new SimpleStringProperty();
     private ObjectProperty<Movie> selectedMovie = new SimpleObjectProperty<>();
     private ObjectProperty<Movie> deletedMovie = new SimpleObjectProperty<>();
+    private SortedList<Movie> sortedData;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,26 +69,31 @@ public class MoviesTablePresenter implements Initializable {
             filteredData.setPredicate(movie -> {
                 // If filter text is empty, display all persons.
                 if (searchValue == null || searchValue.isEmpty()) {
+                    // By default sort ASC by year of award
+                    sortedData.setComparator((o1, o2) -> Integer.compare(o1.getYearOfAward(), o2.getYearOfAward()));
                     return true;
                 }
 
                 String lowerCaseFilter = searchValue.toLowerCase();
 
-                if (movie.getTitle().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches title
-                } else if (movie.getTitleEnglish().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches english title
-                }
-                return false; // Does not match.
+                int titleDistance = LevenshteinDistance.computeLevenshteinDistance(movie.getTitle().toLowerCase(), lowerCaseFilter);
+                int englishTitleDistance = LevenshteinDistance.computeLevenshteinDistance(movie.getTitleEnglish().toLowerCase(), lowerCaseFilter);
+
+                // Sort filtered data by ASC Levenshtein distance
+                sortedData.setComparator((o1, o2) -> {
+                    int o1Distance = LevenshteinDistance.computeLevenshteinDistance(o1.getTitle().toLowerCase(), lowerCaseFilter);
+                    int o2Distance = LevenshteinDistance.computeLevenshteinDistance(o2.getTitle().toLowerCase(), lowerCaseFilter);
+                    return Integer.compare(o1Distance, o2Distance);
+                });
+
+                // Only display titles with low Levenshtein distance
+                return titleDistance < MAX_DISTANCE || englishTitleDistance < MAX_DISTANCE;
             });
 
         });
 
         // Wrap the FilteredList in a SortedList.
-        SortedList<Movie> sortedData = new SortedList<>(filteredData);
-
-        // Bind the SortedList comparator to the TableView comparator.
-        sortedData.comparatorProperty().bind(moviesTable.comparatorProperty());
+        sortedData = new SortedList<>(filteredData);
 
         moviesTable.setItems(sortedData);
 
