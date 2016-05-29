@@ -111,21 +111,20 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
     }
 
     @Override
-    public void onSave(File file) {
+    public void onSave() {
         ObservableList<Movie> movies = moviesTablePresenter.getData();
         try {
-            movieService.saveMovies(file, movies);
-            showSuccessfulSavedNotification(file);
+            movieService.saveMovies(movies);
+            showSuccessfulSavedNotification();
         } catch (IOException e) {
-            showSavingFailedNotification(file);
+            showSavingFailedNotification();
             e.printStackTrace();
         }
     }
 
-    private void showSuccessfulSavedNotification(final File file) {
+    private void showSuccessfulSavedNotification() {
         Notifications.create()
                 .title("Saved file")
-                .text(file.getAbsolutePath())
                 .owner(primaryStage)
                 .hideAfter(Duration.seconds(3))
                 .position(Pos.BOTTOM_RIGHT)
@@ -133,10 +132,9 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
                 .showConfirm();
     }
 
-    private void showSavingFailedNotification(final File file) {
+    private void showSavingFailedNotification() {
         Notifications.create()
                 .title("Failed to save file!")
-                .text(file.getAbsolutePath())
                 .owner(primaryStage)
                 .hideAfter(Duration.seconds(5))
                 .position(Pos.BOTTOM_RIGHT)

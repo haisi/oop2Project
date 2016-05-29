@@ -5,6 +5,7 @@ import ch.fhnw.business.movie.entity.Movie;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +25,19 @@ public class MovieService {
 
     public List<Movie> getAllMovies() {
 
-        InputStream resourceAsStream = MovieService.class.getClass().getResourceAsStream("/movies.csv");
+        Path filePath = getHomeCsvFile();
+
+        InputStream resourceAsStream = null;
+        if (Files.exists(filePath)) {
+            try {
+                resourceAsStream = new FileInputStream(filePath.toFile());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            resourceAsStream = MovieService.class.getClass().getResourceAsStream("/movies.csv");
+        }
+
 
         try (BufferedReader buffer = new BufferedReader(new InputStreamReader(resourceAsStream, Charset.forName("UTF-8")))) {
             return buffer
@@ -67,8 +80,7 @@ public class MovieService {
 
     }
 
-    public void saveMovies(File file, List<Movie> movies) throws IOException {
-        System.out.println("Saving: " + file.getAbsolutePath());
+    public void saveMovies(List<Movie> movies) throws IOException {
 
         final List<String> lines = new ArrayList<>();
         // add title
@@ -76,7 +88,15 @@ public class MovieService {
 
         movies.forEach(movie -> lines.add(movie.toCsvRow()));
 
-        Files.write(file.toPath(), lines, Charset.forName("UTF-8"));
+        Path filePath = getHomeCsvFile();
+
+        Files.write(filePath, lines, Charset.forName("UTF-8"));
+    }
+
+    private Path getHomeCsvFile() {
+        String home = System.getProperty("user.home");
+        String filePathStr = home + File.separator + "movies.csv";
+        return Paths.get(filePathStr);
     }
 
     public Movie createNewEmptyMovie() {

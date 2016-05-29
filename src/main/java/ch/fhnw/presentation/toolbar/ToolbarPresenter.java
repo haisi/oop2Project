@@ -64,19 +64,10 @@ public class ToolbarPresenter implements Initializable {
         });
 
         saveBtn.setOnMouseClicked(event -> {
-            FileChooser fileChooser = new FileChooser();
-            // Set extension filter
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV-files (*.csv)", "*.csv");
-            fileChooser.getExtensionFilters().add(extFilter);
 
-            // Show save file dialog
-            File file = fileChooser.showSaveDialog(primaryStage);
-
-            if (file != null) {
-                toolbarListener
-                        .orElseThrow(() -> new IllegalStateException("ToolbarListener must be set!"))
-                        .onSave(file);
-            }
+            toolbarListener
+                    .orElseThrow(() -> new IllegalStateException("ToolbarListener must be set!"))
+                    .onSave();
 
         });
 
@@ -110,7 +101,7 @@ public class ToolbarPresenter implements Initializable {
     }
 
     public interface ToolbarActionsListener {
-        void onSave(File file);
+        void onSave();
         void onAddNewMovie();
         void onChangeLanguage();
     }
