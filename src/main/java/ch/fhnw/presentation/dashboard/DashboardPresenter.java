@@ -46,6 +46,9 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
     Stage primaryStage;
 
     @Inject
+    Locale defaultLocal;
+
+    @Inject
     MovieService movieService;
 
     private ToolbarView toolbarView;
@@ -147,10 +150,11 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
 
     @Override
     public void onChangeLanguage() {
-        if (Locale.getDefault().equals(Locale.GERMAN)) {
+
+        if (Locale.getDefault().equals(defaultLocal)) {
             Locale.setDefault(Locale.ENGLISH);
         } else {
-            Locale.setDefault(Locale.GERMAN);
+            Locale.setDefault(defaultLocal);
         }
 
         DashboardView dashboardView = new DashboardView();

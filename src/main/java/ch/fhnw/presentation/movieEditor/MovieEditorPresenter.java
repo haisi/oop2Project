@@ -163,7 +163,7 @@ public class MovieEditorPresenter implements Initializable {
         root.getChildren().addAll(masker);
         masker.setVisible(true);
         masker.setProgressVisible(false);
-        masker.setText("Select a movie");
+        masker.setText(resources.getString("no_movie_selected"));
 
         clearEditor();
 

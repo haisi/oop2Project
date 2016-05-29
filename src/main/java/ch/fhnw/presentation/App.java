@@ -5,6 +5,7 @@ import com.airhacks.afterburner.injection.Injector;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -27,6 +28,7 @@ public class App extends Application {
         Map<Object, Object> customProperties = new HashMap<>();
         customProperties.put("date", date);
         customProperties.put("primaryStage", stage);
+        customProperties.put("defaultLocal", Locale.getDefault());
         /*
          * any function which accepts an Object as key and returns
          * and return an Object as result can be used as source.
