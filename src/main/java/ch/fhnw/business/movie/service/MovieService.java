@@ -44,32 +44,7 @@ public class MovieService {
                     .lines()
                     .skip(1)
                     .map(s -> s.split(";"))
-                    .map(strings -> {
-                        Movie movie = new Movie();
-
-                        movie.setId(Integer.parseInt(strings[0]));
-                        movie.setTitle(strings[1]);
-                        movie.setYearOfAward(Integer.parseInt(strings[2]));
-                        movie.setDirector(strings[3]);
-                        movie.setMainActor(strings[4]);
-                        movie.setTitleEnglish(strings[5]);
-                        movie.setYearOfProduction(Integer.parseInt(strings[6]));
-                        movie.addCountries(strings[7].split("/"));
-                        movie.setDuration(Integer.parseInt(strings[8]));
-                        movie.setFsk(Integer.parseInt(strings[9]));
-                        movie.setGenre(strings[10]);
-
-                        try {
-                            LocalDate startDate = LocalDate.parse(strings[11], dtf);
-                            movie.setStartDate(Optional.of(startDate));
-                        } catch (DateTimeParseException ex) {
-                            movie.setStartDate(Optional.empty());
-                        }
-
-                        movie.setNumberOfOscars(Integer.parseInt(strings[12]));
-
-                        return movie;
-                    })
+                    .map(this::extractMovie)
                     .collect(Collectors.toList());
 
         } catch (IOException e) {
@@ -78,6 +53,33 @@ public class MovieService {
 
         return Collections.emptyList();
 
+    }
+
+    protected Movie extractMovie(String[] strings) {
+        Movie movie = new Movie();
+
+        movie.setId(Integer.parseInt(strings[0]));
+        movie.setTitle(strings[1]);
+        movie.setYearOfAward(Integer.parseInt(strings[2]));
+        movie.setDirector(strings[3]);
+        movie.setMainActor(strings[4]);
+        movie.setTitleEnglish(strings[5]);
+        movie.setYearOfProduction(Integer.parseInt(strings[6]));
+        movie.addCountries(strings[7].split("/"));
+        movie.setDuration(Integer.parseInt(strings[8]));
+        movie.setFsk(Integer.parseInt(strings[9]));
+        movie.setGenre(strings[10]);
+
+        try {
+            LocalDate startDate = LocalDate.parse(strings[11], dtf);
+            movie.setStartDate(Optional.of(startDate));
+        } catch (DateTimeParseException ex) {
+            movie.setStartDate(Optional.empty());
+        }
+
+        movie.setNumberOfOscars(Integer.parseInt(strings[12]));
+
+        return movie;
     }
 
     public void saveMovies(List<Movie> movies) throws IOException {

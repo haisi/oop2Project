@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -116,6 +117,57 @@ public class Movie {
                 ", startDate=" + startDate +
                 ", numberOfOscars=" + numberOfOscars +
                 '}';
+    }
+
+    public boolean deepEquals(Movie movie) {
+        if (movie == null) {
+            return false;
+        }
+        else if (!movie.getTitle().equals(getTitle())) {
+            return false;
+        }
+        else if (!movie.getTitleEnglish().equals(getTitleEnglish())) {
+            return false;
+        }
+        else if (movie.getYearOfProduction() != getYearOfProduction()) {
+            return false;
+        }
+        else if (movie.getYearOfAward() != getYearOfAward()) {
+            return false;
+        }
+        else if (!movie.getDirector().equals(getDirector())) {
+            return false;
+        }
+        else if (movie.getDuration() != getDuration()) {
+            return false;
+        }
+        else if (!movie.getGenre().equals(getGenre())) {
+            return false;
+        }
+        else if (!movie.getCountry().equals(getCountry())) {
+            return false;
+        }
+        else if (movie.getFsk() != getFsk()) {
+            return false;
+        }
+        else if (!optionalDateEquals(movie.getStartDate(), getStartDate())) {
+            return false;
+        }
+        else if (movie.getNumberOfOscars() != getNumberOfOscars()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean optionalDateEquals(Optional<LocalDate> o1, Optional<LocalDate> o2) {
+        if (o1.isPresent() ^ o2.isPresent()) {
+            return false;
+        } else if (!o1.isPresent() && !o2.isPresent()) {
+            return true;
+        }
+
+        return o1.get().equals(o2.get());
     }
 
     @Override
