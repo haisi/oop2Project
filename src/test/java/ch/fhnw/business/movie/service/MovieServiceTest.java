@@ -23,4 +23,26 @@ public class MovieServiceTest {
 
         assertTrue(expected.deepEquals(actualMovie));
     }
+
+    @Test
+    public void testMovieEmptyDateExtraction() throws Exception {
+        String[] input = {"13","Mrs. Miniver","1943","William Wyler","Greer Garson, Walter Pidgeon","Mrs. Miniver","1942","US","134","12","Drama","-","1"};
+
+        Movie expected = new Movie(13, "Mrs. Miniver", 1943, "William Wyler", "Greer Garson, Walter Pidgeon", "Mrs. Miniver", 1942, Arrays.asList("US"), 134, 12, "Drama", 1);
+        Movie actualMovie = new MovieService().extractMovie(input);
+
+        assertTrue(expected.deepEquals(actualMovie));
+    }
+
+    @Test
+    public void testMovieMultipleCountriesExtraction() throws Exception {
+        String[] input = {"13","Mrs. Miniver","1943","William Wyler","Greer Garson, Walter Pidgeon","Mrs. Miniver","1942","US/CH/FR","134","12","Drama","21.10.1960","1"};
+
+        Movie expected = new Movie(13, "Mrs. Miniver", 1943, "William Wyler", "Greer Garson, Walter Pidgeon", "Mrs. Miniver", 1942, Arrays.asList("US", "CH", "FR" +
+                ""), 134, 12, "Drama", LocalDate.of(1960, 10, 21), 1);
+        Movie actualMovie = new MovieService().extractMovie(input);
+
+        assertTrue(expected.deepEquals(actualMovie));
+    }
+
 }
