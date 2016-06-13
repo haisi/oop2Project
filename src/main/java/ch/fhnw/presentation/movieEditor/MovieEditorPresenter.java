@@ -168,8 +168,8 @@ public class MovieEditorPresenter implements Initializable {
         clearEditor();
 
         titleLabel.textProperty().bind(titleField.textProperty());
-        directorLabel.textProperty().bind(Bindings.concat(resources.getString("director.from"), " ", directorField.textProperty()));
-        mainActorLabel.textProperty().bind(Bindings.concat(resources.getString("mainActors.with"), " ", mainActorField.textProperty()));
+        directorLabel.textProperty().bind(directorField.textProperty());
+        mainActorLabel.textProperty().bind(mainActorField.textProperty());
         yearOfAwardLabel.textProperty().bind(yearSpinner.valueProperty().asString());
 
         fskComboBox.setItems(fskOptions);
@@ -217,7 +217,6 @@ public class MovieEditorPresenter implements Initializable {
 
                 setCountriesFlags(newValue);
 
-                // TODO: extract max-values into config.file
                 yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 2099, newValue.getYearOfAward()));
                 titleField.setText(newValue.getTitle());
                 directorField.setText(newValue.getDirector());
