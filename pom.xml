@@ -20,6 +20,14 @@
             <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Used for GUI-integration-tests -->
+        <dependency>
+            <groupId>org.loadui</groupId>
+            <artifactId>testFx</artifactId>
+            <version>3.0.0 </version>
+        </dependency>
+
         <dependency>
             <groupId>com.airhacks</groupId>
             <artifactId>afterburner.fx</artifactId>

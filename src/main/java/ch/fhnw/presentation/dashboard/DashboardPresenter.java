@@ -174,4 +174,8 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
         AnchorPane.setRightAnchor(node, 0d);
 
     }
+
+    public MoviesTablePresenter getMoviesTablePresenter() {
+        return moviesTablePresenter;
+    }
 }
