@@ -71,7 +71,6 @@ public class MovieEditorPresenter implements Initializable {
     Spinner<Integer> durationSpinner;
     @FXML
     DatePicker startDatePicker;
-    //TODO find proper type for fsk
     @FXML
     ComboBox<Integer> fskComboBox;
     ObservableList<Integer> fskOptions = FXCollections.observableArrayList(0, 6, 12, 16, 18);

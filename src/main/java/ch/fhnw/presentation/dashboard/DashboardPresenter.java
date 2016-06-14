@@ -105,8 +105,6 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
         toolbarView = new ToolbarView();
         toolbarPresenter = (ToolbarPresenter) toolbarView.getPresenter();
         toolbarPresenter.setToolbarListener(DashboardPresenter.this);
-        // TODO use toolbarPresenter to bind textfield-value to table
-        // TODO add listener-object to toolbarPresenter for remove and add item
         borderPane.setTop(toolbarView.getView());
     }
 
@@ -128,7 +126,7 @@ public class DashboardPresenter implements Initializable, ToolbarPresenter.Toolb
                 .owner(primaryStage)
                 .hideAfter(Duration.seconds(3))
                 .position(Pos.BOTTOM_RIGHT)
-                .onAction(event -> System.out.println("Notification clicked on!")) //TODO open file on click
+                .onAction(event -> System.out.println("Notification clicked on!"))
                 .showConfirm();
     }
 

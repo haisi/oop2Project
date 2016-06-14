@@ -46,7 +46,6 @@ public class MoviesTablePresenter implements Initializable {
 
     @FXML
     TableView<Movie> moviesTable;
-    // TODO: find type for status
     @FXML
     TableColumn<Movie, Object> statusColumn;
     @FXML
@@ -150,7 +149,6 @@ public class MoviesTablePresenter implements Initializable {
 
     private void setCellValueFactories() {
 
-        // TODO: set factory for status
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearOfAwardProperty());
         titleColumn.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
         directorColumn.setCellValueFactory(cellData -> cellData.getValue().directorProperty());

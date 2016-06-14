@@ -16,7 +16,6 @@ import java.util.Optional;
 public class Movie {
 
     final LongProperty id = new SimpleLongProperty();
-    // TODO maybe status of entity (not saved and etc.)
     final StringProperty title = new SimpleStringProperty();
     final IntegerProperty yearOfAward = new SimpleIntegerProperty();
     final StringProperty director = new SimpleStringProperty();
@@ -185,10 +184,6 @@ public class Movie {
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
-
-
-    //TODO property-getter for list of countries
-
 
     public long getId() {
         return id.get();
