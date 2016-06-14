@@ -246,10 +246,10 @@ public class MovieEditorPresenter implements Initializable {
     }
 
     private void clearEditor() {
-        titleLabel.setText("empty");
-        directorLabel.setText("empty");
-        mainActorLabel.setText("empty");
-        yearOfAwardLabel.setText("empty");
+//        titleLabel.setText("empty");
+//        directorLabel.setText("empty");
+//        mainActorLabel.setText("empty");
+//        yearOfAwardLabel.setText("empty");
 
         oscarsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
         durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
