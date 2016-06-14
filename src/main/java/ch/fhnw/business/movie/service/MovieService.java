@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -23,35 +24,41 @@ public class MovieService {
 
     final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-    public List<Movie> getAllMovies() {
+    public CompletableFuture<List<Movie>> getAllMovies() {
 
-        Path filePath = getHomeCsvFile();
+        return CompletableFuture.supplyAsync(() -> {
+            Path filePath = getHomeCsvFile();
 
-        InputStream resourceAsStream = null;
-        if (Files.exists(filePath)) {
-            try {
-                resourceAsStream = new FileInputStream(filePath.toFile());
-            } catch (FileNotFoundException e) {
+            InputStream resourceAsStream = null;
+            if (Files.exists(filePath)) {
+                try {
+                    resourceAsStream = new FileInputStream(filePath.toFile());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                resourceAsStream = MovieService.class.getClass().getResourceAsStream("/movies.csv");
+            }
+
+            if (resourceAsStream == null) {
+                return Collections.emptyList();
+            }
+
+            try (BufferedReader buffer = new BufferedReader(new InputStreamReader(resourceAsStream, Charset.forName("UTF-8")))) {
+                return buffer
+                        .lines()
+                        .skip(1)
+                        .map(s -> s.split(";"))
+                        .map(this::extractMovie)
+                        .collect(Collectors.toList());
+
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            resourceAsStream = MovieService.class.getClass().getResourceAsStream("/movies.csv");
-        }
 
+            return Collections.emptyList();
 
-        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(resourceAsStream, Charset.forName("UTF-8")))) {
-            return buffer
-                    .lines()
-                    .skip(1)
-                    .map(s -> s.split(";"))
-                    .map(this::extractMovie)
-                    .collect(Collectors.toList());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return Collections.emptyList();
+        });
 
     }
 

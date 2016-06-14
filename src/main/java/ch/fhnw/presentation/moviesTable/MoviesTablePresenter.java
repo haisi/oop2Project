@@ -3,6 +3,7 @@ package ch.fhnw.presentation.moviesTable;
 import ch.fhnw.business.movie.entity.Movie;
 import ch.fhnw.business.movie.service.MovieService;
 import ch.fhnw.presentation.util.LevenshteinDistance;
+import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import javax.inject.Inject;
 import java.net.URL;
@@ -31,6 +35,9 @@ public class MoviesTablePresenter implements Initializable {
 
     @Inject
     MovieService movieService;
+
+    @Inject
+    Stage primaryStage;
 
     private final ObservableList<Movie> data = FXCollections.observableArrayList();
 
@@ -59,8 +66,20 @@ public class MoviesTablePresenter implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        List<Movie> allMovies = movieService.getAllMovies();
-        data.addAll(allMovies);
+        movieService
+                .getAllMovies()
+                .whenComplete((movies, throwable) -> Platform.runLater(() -> {
+                    if (throwable == null) {
+                        data.addAll(movies);
+                    } else {
+                        Notifications.create()
+                                .title("Failed to load movies!")
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.BOTTOM_RIGHT)
+                                .owner(primaryStage)
+                                .showError();
+                    }
+                }));
 
         FilteredList<Movie> filteredData = new FilteredList<>(data, p -> true);
 
