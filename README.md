@@ -1,4 +1,5 @@
 OO2-Project by Hasan Kara
+![alt tag](https://api.travis-ci.org/haisi/oop2Project.svg?branch=master)
 ===========
 ## What is this
 This project is mandatory assessment project for OOP2 at FHNW Windisch.
