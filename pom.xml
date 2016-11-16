@@ -49,6 +49,15 @@
     </dependencies>
     <build>
         <defaultGoal>clean package</defaultGoal>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>3.1.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
         <plugins>
             <!-- Maven wrapper -->
             <plugin>
@@ -140,5 +149,12 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+
+        <!-- For Java -->
+        <sonar.junit.reportsPath>reports/java/surefire-reports</sonar.junit.reportsPath>
+        <sonar.jacoco.reportPath>reports/java/jacoco.exec</sonar.jacoco.reportPath>
     </properties>
 </project>
